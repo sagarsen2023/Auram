@@ -1,8 +1,12 @@
 import * as SplashScreen from "expo-splash-screen";
-import { Text } from "react-native";
+import { Stack } from "expo-router";
 
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  return <Text>Hello, world!</Text>;
+  return (
+    <Stack>
+      <Stack.Screen name="index" />
+    </Stack>
+  );
 }
