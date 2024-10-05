@@ -7,7 +7,7 @@ export default function RootLayout() {
   return (
     <Stack>
       <Stack.Screen
-        name="(welcome)/index"
+        name="(welcome)"
         options={{
           headerShown: false,
         }}
