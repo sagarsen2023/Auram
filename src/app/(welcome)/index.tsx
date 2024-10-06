@@ -3,7 +3,7 @@ import { Image, Text, StyleSheet, View, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { COLORS } from "@/src/constants/theme";
 import PrimaryRoundedButton from "@/src/components/primary-rounded-button";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 
 const Welcome = () => {
   return (
@@ -38,7 +38,12 @@ const Welcome = () => {
               paddingHorizontal: 25,
             }}
           >
-            <PrimaryRoundedButton title="Get Started" />
+            <PrimaryRoundedButton
+              title="Get Started"
+              onPress={() => {
+                router.push("/onboarding");
+              }}
+            />
           </View>
           {/* Have an account redirection */}
           <View>
