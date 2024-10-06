@@ -38,6 +38,7 @@ const Welcome = () => {
 
   return (
     <SafeAreaView style={{
+      flex: 1,
       backgroundColor: COLORS.secondary
     }}>
       <ScrollView>
@@ -90,7 +91,7 @@ const Welcome = () => {
               Already have an account?{" "}
               <Link
                 // TODO: Add href to login page
-                href={"/"}
+                href={"/(auth)/login"}
                 style={{
                   fontWeight: "bold",
                   color: COLORS.primary,

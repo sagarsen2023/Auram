@@ -156,7 +156,9 @@ export default function Onboarding() {
               padding: 16,
               alignItems: "flex-end",
             }}
-            // TODO: Implement skip functionality
+            onPress={()=>{
+              router.replace("/(auth)/login")
+            }}
           >
             <Text
               style={{
@@ -211,7 +213,7 @@ export default function Onboarding() {
             onPress={handleNext}
             currentIndex={currentIndex}
             totalItemsCount={sliderData.length - 1}
-            onEndReached={() => console.log("End of onboarding")}
+            onEndReached={() => router.replace("/(auth)/login")}
           />
         </View>
       </ScrollView>
