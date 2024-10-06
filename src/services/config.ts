@@ -4,7 +4,6 @@ interface APIOptions extends RequestInit {
   headers?: Record<string, string>;
 }
 
-
 async function request<T>(
   method: string,
   endpoint: string,
@@ -17,9 +16,8 @@ async function request<T>(
     method,
     headers: {
       'Content-Type': 'application/json',
+      // TODO: add token to headers
       // ...(token && { Authorization: `Bearer ${token}` }),
-      // ...(seller && { Seller: seller }),
-      // ...(buyer && { Buyer: buyer }),
 
       ...options.headers,
     },
