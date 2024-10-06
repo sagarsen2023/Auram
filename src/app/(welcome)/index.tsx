@@ -1,13 +1,45 @@
 import React from "react";
 import { Image, Text, StyleSheet, View, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { COLORS } from "@/src/constants/theme";
+import { useThemeColor } from "@/src/constants/theme";
 import PrimaryRoundedButton from "@/src/components/primary-rounded-button";
 import { Link, router } from "expo-router";
 
 const Welcome = () => {
+  const COLORS = useThemeColor();
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+    },
+    imageContainer: {
+      maxWidth: "100%",
+      height: 520,
+    },
+    textWrapper: {
+      justifyContent: "center",
+      alignItems: "center",
+      paddingHorizontal: 25,
+    },
+    headingText: {
+      fontSize: 35,
+      fontWeight: "bold",
+      letterSpacing: 2,
+      color: COLORS.text
+    },
+    subText: {
+      fontSize: 16,
+      lineHeight: 25,
+      marginVertical: 15,
+      textAlign: "center",
+      color: COLORS.text
+    },
+  });
+
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{
+      backgroundColor: COLORS.secondary
+    }}>
       <ScrollView>
         <View style={styles.container}>
           {/* ON boarding Image */}
@@ -52,6 +84,7 @@ const Welcome = () => {
                 textAlign: "center",
                 marginVertical: 20,
                 fontSize: 20,
+                color: COLORS.text,
               }}
             >
               Already have an account?{" "}
@@ -73,31 +106,5 @@ const Welcome = () => {
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  imageContainer: {
-    maxWidth: "100%",
-    height: 520,
-  },
-  textWrapper: {
-    justifyContent: "center",
-    alignItems: "center",
-    paddingHorizontal: 25,
-  },
-  headingText: {
-    fontSize: 35,
-    fontWeight: "bold",
-    letterSpacing: 2,
-  },
-  subText: {
-    fontSize: 16,
-    lineHeight: 25,
-    marginVertical: 15,
-    textAlign: "center",
-  },
-});
 
 export default Welcome;

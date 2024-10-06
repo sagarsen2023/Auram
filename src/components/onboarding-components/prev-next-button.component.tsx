@@ -1,6 +1,6 @@
 import { StyleSheet, TouchableOpacity, Text } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import { COLORS } from "@/src/constants/theme";
+import { useThemeColor } from "@/src/constants/theme";
 
 export default function PrevNextButton({
   type,
@@ -15,13 +15,15 @@ export default function PrevNextButton({
   totalItemsCount?: number;
   onEndReached?: () => void;
 }) {
+  const COLORS = useThemeColor();
   return (
     <TouchableOpacity
       style={[
         styles.button,
         {
           display: type === "prev" && currentIndex === 0 ? "none" : "flex",
-          backgroundColor: type === "prev" ? "white" : COLORS.primary,
+          backgroundColor: type === "prev" ? "transparent" : COLORS.primary,
+          borderColor: type === "prev" ? COLORS.primary : "transparent"
         },
       ]}
       onPress={
@@ -46,7 +48,7 @@ export default function PrevNextButton({
         <AntDesign
           name={type === "prev" ? "left" : "right"}
           size={20}
-          color={type === "prev" ? COLORS.primary : "white"}
+          color={type === "prev" ? COLORS.text : "white"}
         />
       )}
     </TouchableOpacity>

@@ -14,9 +14,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import PrevNextButton from "@/src/components/onboarding-components/prev-next-button.component";
 import { router } from "expo-router";
-import { COLORS } from "@/src/constants/theme";
-
-const width = Dimensions.get("window").width;
+import { useThemeColor } from "@/src/constants/theme";
 
 export default function Onboarding() {
   const sliderData = [
@@ -42,10 +40,61 @@ export default function Onboarding() {
       imgSrc: require("@/src/assets/images/onboarding/onboarding-slider-image3.jpg"),
     },
   ];
+  const COLORS = useThemeColor();
+  const width = Dimensions.get("window").width;
 
   const flatListRef = useRef<FlatList>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoScrolling, setIsAutoScrolling] = useState(false);
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: COLORS.secondary,
+      justifyContent: "space-between",
+    },
+    slide: {
+      width,
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    imageContainer: {
+      width: "100%",
+      height: 650,
+      borderTopLeftRadius: 30,
+      borderTopRightRadius: 30,
+    },
+    textContainer: {
+      padding: 25,
+      position: "absolute",
+      bottom: 0,
+      width: "100%",
+      backgroundColor: COLORS.secondary,
+      borderTopLeftRadius: 30,
+      borderTopRightRadius: 30,
+      minHeight: 200,
+    },
+    headingText: {
+      fontSize: 40,
+      fontWeight: "bold",
+      textAlign: "center",
+      color: COLORS.primary,
+    },
+    descriptionText: {
+      marginTop: 10,
+      fontSize: 20,
+      textAlign: "center",
+      lineHeight: 25,
+      color: COLORS.text,
+    },
+    buttonContainer: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+      paddingHorizontal: 30,
+      paddingVertical: 40,
+    },
+  });
 
   const handleNext = () => {
     if (currentIndex < sliderData.length - 1) {
@@ -109,11 +158,15 @@ export default function Onboarding() {
             }}
             // TODO: Implement skip functionality
           >
-            <Text style={{
+            <Text
+              style={{
                 fontSize: 20,
-                color: COLORS.primary,
+                color: COLORS.text,
                 fontWeight: "bold",
-            }}>Skip</Text>
+              }}
+            >
+              Skip
+            </Text>
           </Pressable>
           <FlatList
             ref={flatListRef}
@@ -146,7 +199,7 @@ export default function Onboarding() {
                   borderWidth: 1,
                   borderColor: COLORS.primary,
                   borderRadius: 20,
-                  color: COLORS.primary,
+                  color: COLORS.text,
                 }}
               >
                 Back
@@ -165,51 +218,3 @@ export default function Onboarding() {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "white",
-    justifyContent: "space-between",
-  },
-  slide: {
-    width,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  imageContainer: {
-    width: "100%",
-    height: 650,
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
-  },
-  textContainer: {
-    padding: 25,
-    position: "absolute",
-    bottom: 0,
-    width: "100%",
-    backgroundColor: "white",
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
-    minHeight: 200,
-  },
-  headingText: {
-    fontSize: 40,
-    fontWeight: "bold",
-    textAlign: "center",
-    color: COLORS.primary,
-  },
-  descriptionText: {
-    marginTop: 10,
-    fontSize: 20,
-    textAlign: "center",
-    lineHeight: 25,
-  },
-  buttonContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingHorizontal: 30,
-    paddingVertical: 40,
-  },
-});
