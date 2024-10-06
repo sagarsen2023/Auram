@@ -13,11 +13,12 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.sagarsen.auram"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./src/assets/images/splash-screen.png",
+        "foregroundImage": "./src/assets/images/icon.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.sagarsen.auram"
