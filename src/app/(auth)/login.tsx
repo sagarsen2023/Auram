@@ -1,3 +1,4 @@
+import FormFieldRenderer from "@/src/components/form-field-renderer.component";
 import ThemeText from "@/src/components/theme-text.component";
 import { SIZES, useThemeColor } from "@/src/constants/theme";
 import {
@@ -7,23 +8,52 @@ import {
   StyleSheet,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useForm, FormProvider } from "react-hook-form";
+import PrimaryRoundedButton from "@/src/components/primary-rounded-button.component";
+import { RequiredFieldsType } from "@/src/components/form-field-renderer.component";
 
 export default function Login() {
-  const COLORS = useThemeColor()
+  const COLORS = useThemeColor();
+  const methods = useForm();
+  const { handleSubmit } = methods;
+  const requiredFields: RequiredFieldsType = [
+    {
+      fieldName: "email",
+      type: "text",
+    },
+    {
+      fieldName: "password",
+      type: "password",
+    },
+  ];
+
   return (
-    <SafeAreaView style={{
-      flex: 1,
-      backgroundColor: COLORS.secondary,
-    }}>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        backgroundColor: COLORS.secondary,
+      }}
+    >
       <ScrollView>
-        <KeyboardAvoidingView>
+        <KeyboardAvoidingView style={{ flex: 1 }}>
           <View style={styles.loginContainer}>
             <ThemeText size={24} fontWeight={"bold"}>
               Login
             </ThemeText>
-            <ThemeText size={16} style={styles.subText}>
-             Hi! Welcome back, you have been missed.
+            <ThemeText size={18} style={styles.subText}>
+              Hi! Welcome back, you have been missed.
             </ThemeText>
+          </View>
+          <View>
+            <FormProvider {...methods}>
+              <FormFieldRenderer requiredFields={requiredFields} />
+              <PrimaryRoundedButton
+                title="Login"
+                onPress={handleSubmit((data) => {
+                  console.log(data);
+                })}
+              />
+            </FormProvider>
           </View>
         </KeyboardAvoidingView>
       </ScrollView>
@@ -40,5 +70,5 @@ const styles = StyleSheet.create({
   },
   subText: {
     marginVertical: SIZES.marginOrPadding.medium,
-  }
+  },
 });
