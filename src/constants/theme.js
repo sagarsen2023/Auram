@@ -18,6 +18,13 @@ export const SIZES = {
     large: 24,
     xLarge: 32,
   },
+  fontSize: {
+    xSmall: 12,
+    small: 14,
+    medium: 16,
+    large: 18,
+    xLarge: 20,
+  }
 };
 
 export const TYPOGRAPHY = {
