@@ -6,6 +6,7 @@ export const useThemeColor = () => {
     primary: colorScheme === "light" ? "#704F38" : "#A67D5D",
     secondary: colorScheme === "light" ? "white" : "black",
     text: colorScheme === "light" ? "black" : "white",
+    borderColor: colorScheme === "light" ? "lightgray" : "#525050",
   };
   return COLORS;
 };

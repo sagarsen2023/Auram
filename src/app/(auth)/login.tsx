@@ -20,10 +20,12 @@ export default function Login() {
     {
       fieldName: "email",
       type: "text",
+      placeHolder: "Enter your Email",
     },
     {
       fieldName: "password",
       type: "password",
+      placeHolder: "Enter your Password",
     },
   ];
 
@@ -35,7 +37,9 @@ export default function Login() {
       }}
     >
       <ScrollView>
-        <KeyboardAvoidingView style={{ flex: 1 }}>
+        <KeyboardAvoidingView
+          style={{ flex: 1, paddingHorizontal: SIZES.marginOrPadding.large }}
+        >
           <View style={styles.loginContainer}>
             <ThemeText size={24} fontWeight={"bold"}>
               Login

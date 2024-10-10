@@ -3,8 +3,9 @@ import TextInputForm from "./forms/text-input-form.component";
 import { useFormContext } from "react-hook-form";
 
 export type RequiredFieldsType = {
-    fieldName: string;
-    type: string;
+  fieldName: string;
+  type: string;
+  placeHolder?: string;
 }[];
 
 export default function FormFieldRenderer({
@@ -17,7 +18,12 @@ export default function FormFieldRenderer({
     <View>
       {requiredFields.map((field, index) => {
         return (
-          <TextInputForm key={index} name={field.fieldName} control={control} />
+          <TextInputForm
+            key={index}
+            name={field.fieldName}
+            placeHolder={field.placeHolder}
+            control={control}
+          />
         );
       })}
     </View>

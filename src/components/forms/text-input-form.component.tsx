@@ -6,14 +6,14 @@ import { Controller, Control } from "react-hook-form";
 export default function TextInputForm({
   name,
   control,
+  placeHolder,
 }: {
   name: string;
+  placeHolder?: string;
   control: Control;
 }) {
   const COLORS = useThemeColor();
-  const [borderColor, setBorderColor] = useState(
-    useColorScheme() === "dark" ? "#525050" : "lightgrey"
-  );
+  const [borderColor, setBorderColor] = useState(COLORS.borderColor);
   return (
     <Controller
       name={name}
@@ -24,11 +24,13 @@ export default function TextInputForm({
             setBorderColor(COLORS.primary);
           }}
           onBlur={() => {
-            setBorderColor("#525050");
-            onBlur(); 
+            setBorderColor(COLORS.borderColor);
+            onBlur();
           }}
           onChangeText={onChange}
           value={value}
+          placeholder={placeHolder}
+          placeholderTextColor={"lightgrey"}
           selectionColor={COLORS.primary}
           style={[
             styles.textInput,
