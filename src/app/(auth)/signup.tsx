@@ -1,9 +1,12 @@
 import { Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function SignUp() {
-    return (
-        <View>
-        <Text>Sign Up</Text>
-        </View>
-    );
+  return (
+    <SafeAreaView>
+      <View>
+        <Text>SignUp</Text>
+      </View>
+    </SafeAreaView>
+  );
 }
