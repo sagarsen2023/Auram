@@ -1,4 +1,6 @@
-import FormFieldRenderer from "@/src/components/form-field-renderer.component";
+import FormFieldRenderer, {
+  RequiredFieldsType,
+} from "@/src/components/form-field-renderer.component";
 import ThemeText from "@/src/components/theme-text.component";
 import { SIZES, useThemeColor } from "@/src/constants/theme";
 import {
@@ -10,8 +12,10 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useForm, FormProvider } from "react-hook-form";
 import PrimaryRoundedButton from "@/src/components/primary-rounded-button.component";
-import { RequiredFieldsType } from "@/src/components/form-field-renderer.component";
-import { loginValidator, LoginValidatorType } from "@/src/validators/auth.validator";
+import {
+  loginValidator,
+  LoginValidatorType,
+} from "@/src/validators/auth.validator";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function Login() {

@@ -1,7 +1,7 @@
 import { StyleSheet, View } from "react-native";
-import TextInputForm from "./forms/text-input-form.component";
+import TextInputForm from "./forms-inputs/text-input-form.component";
 import { useFormContext } from "react-hook-form";
-import PasswordInputForm from "./forms/password-input-form.component";
+import PasswordInputForm from "./forms-inputs/password-input-form.component";
 import { ErrorMessage } from "@hookform/error-message";
 import ThemeText from "./theme-text.component";
 import { SIZES } from "../constants/theme";

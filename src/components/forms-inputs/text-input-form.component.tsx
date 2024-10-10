@@ -1,6 +1,6 @@
 import { SIZES, useThemeColor } from "@/src/constants/theme";
 import { useState } from "react";
-import { StyleSheet, TextInput, useColorScheme, View } from "react-native";
+import { StyleSheet, TextInput, View } from "react-native";
 import { Controller, Control } from "react-hook-form";
 import ThemeText from "../theme-text.component";
 
