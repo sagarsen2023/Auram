@@ -20,6 +20,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import authAPI from "@/src/services/auth.service";
 import Toast from "react-native-toast-message";
 import toastConfig from "@/src/components/toast.config";
+import OrSeparator from "@/src/components/or-separator";
 
 export default function Login() {
   const COLORS = useThemeColor();
@@ -101,6 +102,9 @@ export default function Login() {
               />
             </View>
           </FormProvider>
+          <OrSeparator
+          text="Don't have an account?"
+          />
         </KeyboardAvoidingView>
       </ScrollView>
     </SafeAreaView>
