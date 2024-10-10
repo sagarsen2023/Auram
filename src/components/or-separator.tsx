@@ -1,5 +1,5 @@
 import { View, StyleSheet } from "react-native";
-import { useThemeColor } from "../constants/theme";
+import { SIZES, useThemeColor } from "../constants/theme";
 import ThemeText from "./theme-text.component";
 
 export default function OrSeparator({ text }: { text: string }) {
@@ -16,13 +16,13 @@ export default function OrSeparator({ text }: { text: string }) {
       backgroundColor: COLORS.text,
       borderBottomWidth: 1,
       opacity: 0.2,
-      marginVertical: 20,
     },
   });
   return (
     <View style={style.wrapper}>
       <View style={style.separator} />
       <ThemeText
+        size={SIZES.fontSize.medium}
         style={{
           color: COLORS.text,
           opacity: 0.7,
