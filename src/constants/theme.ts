@@ -7,6 +7,8 @@ export const useThemeColor = () => {
     secondary: colorScheme === "light" ? "white" : "black",
     text: colorScheme === "light" ? "black" : "white",
     borderColor: colorScheme === "light" ? "lightgray" : "#525050",
+    success: "green",
+    error: "red",
   };
   return COLORS;
 };
@@ -25,7 +27,7 @@ export const SIZES = {
     medium: 16,
     large: 18,
     xLarge: 20,
-  }
+  },
 };
 
 export const TYPOGRAPHY = {

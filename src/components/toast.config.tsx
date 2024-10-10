@@ -1,5 +1,5 @@
 import React from "react";
-import { ViewStyle, TextStyle, Platform } from "react-native";
+import { ViewStyle, Platform } from "react-native";
 import {
   BaseToast,
   ErrorToast,
@@ -14,15 +14,24 @@ const toastConfig = {
     return (
       <BaseToast
         {...props}
-        style={{ borderLeftColor: "pink" } as ViewStyle}
-        contentContainerStyle={{ paddingHorizontal: 15 } as ViewStyle}
-        text1Style={
-          {
-            fontSize: 15,
-            color: COLORS.text,
-            fontWeight: "400",
-          } as TextStyle
-        }
+        text1Style={{
+          fontSize: 17,
+          color: COLORS.success,
+          fontWeight: "bold",
+        }}
+        text2Style={{
+          fontSize: 15,
+          color: COLORS.text,
+        }}
+        style={{
+          top: Platform.OS === "ios" ? 25 : 0,
+          backgroundColor: COLORS.secondary,
+          borderLeftColor: COLORS.success,
+          borderWidth: 0.2,
+          borderColor: COLORS.success,
+          position: "absolute",
+          zIndex: 10,
+        }}
       />
     );
   },
@@ -31,24 +40,23 @@ const toastConfig = {
     return (
       <ErrorToast
         {...props}
-        text1Style={
-          {
-            fontSize: 17,
-            color: COLORS.primary,
-          } as TextStyle
-        }
-        text2Style={
-          {
-            fontSize: 15,
-            color: COLORS.primary,
-          } as TextStyle
-        }
+        text1Style={{
+          fontSize: 17,
+          color: COLORS.error,
+          fontWeight: "bold",
+        }}
+        text2Style={{
+          fontSize: 15,
+          color: COLORS.text,
+        }}
         style={{
-          marginTop: Platform.OS === "ios" ? 20 : 0,
+          top: Platform.OS === "ios" ? 25 : 0,
           backgroundColor: COLORS.secondary,
-          borderLeftColor: "red",
+          borderLeftColor: COLORS.error,
           borderWidth: 0.2,
-          borderColor: "red",
+          borderColor: COLORS.error,
+          position: "absolute",
+          zIndex: 10,
         }}
       />
     );

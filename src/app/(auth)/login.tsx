@@ -68,13 +68,17 @@ export default function Login() {
       style={{
         flex: 1,
         backgroundColor: COLORS.secondary,
+        paddingHorizontal: SIZES.marginOrPadding.large,
       }}
     >
       <Toast config={toastConfig} />
-      <ScrollView>
-        <KeyboardAvoidingView
-          style={{ flex: 1, paddingHorizontal: SIZES.marginOrPadding.large }}
-        >
+      <ScrollView
+        contentContainerStyle={{
+          flexGrow: 1,
+          justifyContent: "center",
+        }}
+      >
+        <KeyboardAvoidingView>
           <View style={styles.loginTextContainer}>
             <ThemeText size={35} fontWeight={"bold"}>
               Login
@@ -83,21 +87,20 @@ export default function Login() {
               Hi! Welcome back, you have been missed.
             </ThemeText>
           </View>
-          <View>
-            <FormProvider {...methods}>
-              <FormFieldRenderer requiredFields={requiredFields} />
-              <View
-                style={{
-                  marginTop: SIZES.marginOrPadding.large,
-                }}
-              >
-                <PrimaryRoundedButton
-                  title="Login"
-                  onPress={handleSubmit(onSubmit)}
-                />
-              </View>
-            </FormProvider>
-          </View>
+
+          <FormProvider {...methods}>
+            <FormFieldRenderer requiredFields={requiredFields} />
+            <View
+              style={{
+                marginTop: SIZES.marginOrPadding.large,
+              }}
+            >
+              <PrimaryRoundedButton
+                title="Login"
+                onPress={handleSubmit(onSubmit)}
+              />
+            </View>
+          </FormProvider>
         </KeyboardAvoidingView>
       </ScrollView>
     </SafeAreaView>
@@ -109,7 +112,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 50,
     paddingBottom: 60,
   },
   subText: {

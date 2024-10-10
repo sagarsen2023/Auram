@@ -24,14 +24,12 @@ export default function FormFieldRenderer({
   } = useFormContext();
 
   return (
-    <View
-      style={{
-        gap: 15,
-      }}
-    >
+    <View style={{
+      gap: SIZES.marginOrPadding.medium
+    }}>
       {requiredFields.map((field, index) => {
         return field.type !== "password" ? (
-          <View key={index} style={{ flex: 1 }}>
+          <View key={index}>
             <TextInputForm
               type={field.type}
               label={field.label}
@@ -48,7 +46,7 @@ export default function FormFieldRenderer({
             />
           </View>
         ) : (
-          <View key={index} style={{ flex: 1 }}>
+          <View key={index}>
             <PasswordInputForm
               label={field.label}
               control={control}
