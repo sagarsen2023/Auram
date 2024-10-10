@@ -11,15 +11,19 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useForm, FormProvider } from "react-hook-form";
 import PrimaryRoundedButton from "@/src/components/primary-rounded-button.component";
 import { RequiredFieldsType } from "@/src/components/form-field-renderer.component";
+import { loginValidator, LoginValidatorType } from "@/src/validators/auth.validator";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function Login() {
   const COLORS = useThemeColor();
-  const methods = useForm();
+  const methods = useForm<LoginValidatorType>({
+    resolver: zodResolver(loginValidator),
+  });
   const { handleSubmit } = methods;
   const requiredFields: RequiredFieldsType = [
     {
       fieldName: "email",
-      type: "text",
+      type: "email",
       placeHolder: "Enter your Email",
       label: "Email",
     },
@@ -42,8 +46,8 @@ export default function Login() {
         <KeyboardAvoidingView
           style={{ flex: 1, paddingHorizontal: SIZES.marginOrPadding.large }}
         >
-          <View style={styles.loginContainer}>
-            <ThemeText size={24} fontWeight={"bold"}>
+          <View style={styles.loginTextContainer}>
+            <ThemeText size={35} fontWeight={"bold"}>
               Login
             </ThemeText>
             <ThemeText size={18} style={styles.subText}>
@@ -53,12 +57,18 @@ export default function Login() {
           <View>
             <FormProvider {...methods}>
               <FormFieldRenderer requiredFields={requiredFields} />
-              <PrimaryRoundedButton
-                title="Login"
-                onPress={handleSubmit((data) => {
-                  console.log(data);
-                })}
-              />
+              <View
+                style={{
+                  marginTop: SIZES.marginOrPadding.large,
+                }}
+              >
+                <PrimaryRoundedButton
+                  title="Login"
+                  onPress={handleSubmit((data) => {
+                    console.log(data);
+                  })}
+                />
+              </View>
             </FormProvider>
           </View>
         </KeyboardAvoidingView>
@@ -68,13 +78,17 @@ export default function Login() {
 }
 
 const styles = StyleSheet.create({
-  loginContainer: {
+  loginTextContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    paddingTop: 70,
+    marginTop: 50,
+    paddingBottom: 60,
   },
   subText: {
+    width: "80%",
+    textAlign: "center",
+    lineHeight: 25,
     marginVertical: SIZES.marginOrPadding.medium,
   },
 });

@@ -9,9 +9,11 @@ export default function TextInputForm({
   control,
   placeHolder,
   label,
+  type,
 }: {
   name: string;
   label?: string;
+  type: string;
   placeHolder?: string;
   control: Control;
 }) {
@@ -37,6 +39,7 @@ export default function TextInputForm({
             placeholder={placeHolder}
             placeholderTextColor={COLORS.borderColor}
             selectionColor={COLORS.primary}
+            autoCapitalize={type === "email" ? "none" : "sentences"}
             style={[
               styles.textInput,
               {
@@ -63,5 +66,5 @@ const styles = StyleSheet.create({
   labelText: {
     fontSize: SIZES.fontSize.medium,
     marginBottom: SIZES.marginOrPadding.small,
-  }
+  },
 });
