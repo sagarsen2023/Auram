@@ -21,11 +21,13 @@ export default function Login() {
       fieldName: "email",
       type: "text",
       placeHolder: "Enter your Email",
+      label: "Email",
     },
     {
       fieldName: "password",
       type: "password",
       placeHolder: "Enter your Password",
+      label: "Password",
     },
   ];
 
