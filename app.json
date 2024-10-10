@@ -7,6 +7,7 @@
     "icon": "./src/assets/images/icon.png",
     "scheme": "auram",
     "userInterfaceStyle": "automatic",
+    "backgroundColor": "black",
     "splash": {
       "image": "./src/assets/images/splash-screen.png",
       "resizeMode": "cover",
