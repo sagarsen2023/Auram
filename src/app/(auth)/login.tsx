@@ -17,6 +17,9 @@ import {
   LoginValidatorType,
 } from "@/src/validators/auth.validator";
 import { zodResolver } from "@hookform/resolvers/zod";
+import authAPI from "@/src/services/auth.service";
+import Toast from "react-native-toast-message";
+import toastConfig from "@/src/components/toast.config";
 
 export default function Login() {
   const COLORS = useThemeColor();
@@ -39,6 +42,27 @@ export default function Login() {
     },
   ];
 
+  const onSubmit = async (data: LoginValidatorType) => {
+    try {
+      const response = await authAPI.login(data);
+      if (response.error) {
+        Toast.show({
+          type: "error",
+          text1: "Error",
+          text2: response.message,
+        });
+      } else {
+        Toast.show({
+          type: "success",
+          text1: "Success",
+          text2: "Login Successful",
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <SafeAreaView
       style={{
@@ -46,6 +70,7 @@ export default function Login() {
         backgroundColor: COLORS.secondary,
       }}
     >
+      <Toast config={toastConfig} />
       <ScrollView>
         <KeyboardAvoidingView
           style={{ flex: 1, paddingHorizontal: SIZES.marginOrPadding.large }}
@@ -68,9 +93,7 @@ export default function Login() {
               >
                 <PrimaryRoundedButton
                   title="Login"
-                  onPress={handleSubmit((data) => {
-                    console.log(data);
-                  })}
+                  onPress={handleSubmit(onSubmit)}
                 />
               </View>
             </FormProvider>
