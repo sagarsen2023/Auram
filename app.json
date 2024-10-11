@@ -7,17 +7,19 @@
     "icon": "./src/assets/images/icon.png",
     "scheme": "auram",
     "userInterfaceStyle": "automatic",
+    "backgroundColor": "#000000",
     "splash": {
       "image": "./src/assets/images/splash-screen.png",
       "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.sagarsen.auram"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./src/assets/images/splash-screen.png",
+        "foregroundImage": "./src/assets/images/icon.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.sagarsen.auram"
