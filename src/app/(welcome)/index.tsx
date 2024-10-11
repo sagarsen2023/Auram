@@ -90,8 +90,8 @@ const Welcome = () => {
             >
               Already have an account?{" "}
               <Link
-                // TODO: Add href to login page
                 href={"/(auth)/login"}
+                replace
                 style={{
                   fontWeight: "bold",
                   color: COLORS.primary,

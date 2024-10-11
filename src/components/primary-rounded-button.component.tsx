@@ -1,12 +1,25 @@
-import { TouchableOpacity, Text, StyleSheet } from "react-native";
+import {
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+  ActivityIndicator,
+  ViewStyle,
+  TextStyle,
+} from "react-native";
 import { useThemeColor } from "../constants/theme";
 
 export default function PrimaryRoundedButton({
   title,
   onPress,
+  isLoading,
+  buttonStyle,
+  textStyle,
 }: {
   title: string;
+  isLoading?: boolean;
   onPress?: () => void;
+  buttonStyle?: ViewStyle;
+  textStyle?: TextStyle;
 }) {
   const COLORS = useThemeColor();
   const styles = StyleSheet.create({
@@ -23,8 +36,16 @@ export default function PrimaryRoundedButton({
     },
   });
   return (
-    <TouchableOpacity style={styles.button} onPress={onPress}>
-      <Text style={styles.buttonText}>{title}</Text>
+    <TouchableOpacity
+      disabled={isLoading}
+      style={[styles.button, buttonStyle]}
+      onPress={onPress}
+    >
+      {isLoading ? (
+        <ActivityIndicator color={COLORS.secondary} size={"small"} style={{}} />
+      ) : (
+        <Text style={[styles.buttonText, textStyle]}>{title}</Text>
+      )}
     </TouchableOpacity>
   );
 }

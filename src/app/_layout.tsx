@@ -5,19 +5,21 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   return (
-    <Stack>
-      <Stack.Screen
-        name="(welcome)"
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="(auth)"
-        options={{
-          headerShown: false,
-        }}
-      />
+    <Stack
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen name="index" />
+      <Stack.Screen name="(welcome)" options={{
+        animation: "fade_from_bottom",
+        animationDuration: 300,
+      }}/>
+      <Stack.Screen name="(auth)" />
+      <Stack.Screen name="(root)" options={{
+        animation: "fade_from_bottom",
+        animationDuration: 300,
+      }}/>
     </Stack>
   );
 }

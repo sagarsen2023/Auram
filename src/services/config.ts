@@ -1,3 +1,4 @@
+import { getToken } from "../hooks/token";
 import { BASE_URL } from "./queryUrls";
 
 interface APIOptions extends RequestInit {
@@ -7,17 +8,17 @@ interface APIOptions extends RequestInit {
 async function request<T>(
   method: string,
   endpoint: string,
-  options: APIOptions = {},
+  options: APIOptions = {}
 ): Promise<T> {
   const url = `${BASE_URL}${endpoint}`;
+  const token = getToken();
 
   const response = await fetch(url, {
     ...options,
     method,
     headers: {
-      'Content-Type': 'application/json',
-      // TODO: add token to headers
-      // ...(token && { Authorization: `Bearer ${token}` }),
+      "Content-Type": "application/json",
+      ...(typeof token === "string" && { Authorization: `Bearer ${token}` }),
 
       ...options.headers,
     },
@@ -28,11 +29,11 @@ async function request<T>(
 
 export const fetchAPI = {
   get: <T>(endpoint: string, options: APIOptions = {}) =>
-    request<T>('GET', endpoint, options),
+    request<T>("GET", endpoint, options),
   post: <T>(endpoint: string, body: any, options: APIOptions = {}) =>
-    request<T>('POST', endpoint, { ...options, body: JSON.stringify(body) }),
+    request<T>("POST", endpoint, { ...options, body: JSON.stringify(body) }),
   put: <T>(endpoint: string, body: any, options: APIOptions = {}) =>
-    request<T>('PUT', endpoint, { ...options, body: JSON.stringify(body) }),
+    request<T>("PUT", endpoint, { ...options, body: JSON.stringify(body) }),
   delete: <T>(endpoint: string, options: APIOptions = {}) =>
-    request<T>('DELETE', endpoint, options),
+    request<T>("DELETE", endpoint, options),
 };

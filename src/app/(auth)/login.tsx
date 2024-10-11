@@ -22,10 +22,12 @@ import Toast from "react-native-toast-message";
 import toastConfig from "@/src/components/toast.config";
 import OrSeparator from "@/src/components/or-separator";
 import { Link, router } from "expo-router";
-import { getToken, setToken } from "@/src/hooks/token";
+import { setToken } from "@/src/hooks/token";
+import { useState } from "react";
 
 export default function Login() {
   const COLORS = useThemeColor();
+  const [isLoading, setIsLoading] = useState(false);
   const methods = useForm<LoginValidatorType>({
     resolver: zodResolver(loginValidator),
   });
@@ -47,6 +49,7 @@ export default function Login() {
 
   const onSubmit = async (data: LoginValidatorType) => {
     try {
+      setIsLoading(true);
       const response = await authAPI.login(data);
       if (response.error && !response.data?.token) {
         Toast.show({
@@ -57,12 +60,11 @@ export default function Login() {
         return;
       }
       await setToken(response.data?.token!);
-      const token = await getToken();
-      console.log(token);
-      // TODO: Add navigation to the home screen
-      router.replace("/(auth)/signup");
+      router.replace("/");
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -80,6 +82,7 @@ export default function Login() {
           flexGrow: 1,
           justifyContent: "center",
         }}
+        showsVerticalScrollIndicator={false}
       >
         <KeyboardAvoidingView>
           <View style={styles.loginTextContainer}>
@@ -102,6 +105,7 @@ export default function Login() {
               <PrimaryRoundedButton
                 title="Login"
                 onPress={handleSubmit(onSubmit)}
+                isLoading={isLoading}
               />
             </View>
           </FormProvider>
