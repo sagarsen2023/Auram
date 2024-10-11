@@ -16,7 +16,7 @@ export default function RootLayout() {
         animationDuration: 300,
       }}/>
       <Stack.Screen name="(auth)" />
-      <Stack.Screen name="(home)" options={{
+      <Stack.Screen name="(root)" options={{
         animation: "fade_from_bottom",
         animationDuration: 300,
       }}/>

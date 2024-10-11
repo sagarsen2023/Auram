@@ -38,6 +38,7 @@ function PasswordInputForm({
               placeholder={placeHolder}
               placeholderTextColor={COLORS.borderColor}
               onChangeText={onChange}
+              selectionColor={COLORS.primary}
               value={value}
               secureTextEntry={!isPasswordVisible}
               style={{

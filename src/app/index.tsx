@@ -9,7 +9,7 @@ const index = () => {
     getToken().then((token) => {
       if (token) {
         setIsLogged(true);
-        router.replace("/(home)/");
+        router.replace("/(root)/");
       } else {
         setIsLogged(false);
         router.replace("/(welcome)/");

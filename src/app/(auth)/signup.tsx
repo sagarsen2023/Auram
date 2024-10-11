@@ -1,8 +1,8 @@
+import React, { useState } from "react";
 import FormFieldRenderer, {
   RequiredFieldsType,
 } from "@/src/components/form-field-renderer.component";
 import ThemeText from "@/src/components/theme-text.component";
-import toastConfig from "@/src/components/toast.config";
 import { SIZES, useThemeColor } from "@/src/constants/theme";
 import {
   KeyboardAvoidingView,
@@ -12,11 +12,9 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Toast from "react-native-toast-message";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, FormProvider } from "react-hook-form";
 import PrimaryRoundedButton from "@/src/components/primary-rounded-button.component";
-import { useState } from "react";
 import OrSeparator from "@/src/components/or-separator";
 import { router } from "expo-router";
 import {
@@ -24,10 +22,16 @@ import {
   SignUpValidatorType,
 } from "@/src/validators/auth.validator";
 import authAPI from "@/src/services/auth.service";
+import ThemeModal from "@/src/components/theme-modal";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import toastConfig from "@/src/components/toast.config";
+import Toast from "react-native-toast-message";
 
 export default function SignUp() {
   const COLORS = useThemeColor();
   const [isLoading, setIsLoading] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+
   const requiredFields: RequiredFieldsType = [
     {
       fieldName: "name",
@@ -48,29 +52,25 @@ export default function SignUp() {
       label: "Password",
     },
   ];
+
   const methods = useForm<SignUpValidatorType>({
     resolver: zodResolver(signUpValidator),
   });
   const { handleSubmit } = methods;
+
   const onSubmit = async (data: SignUpValidatorType) => {
     try {
       setIsLoading(true);
       const response = await authAPI.register(data);
-      console.log(response);
       if (response.error) {
         Toast.show({
           type: "error",
-          text1: "Error",
-          text2: response.errors?.email,
+          text1: "Error while registering",
+          text2: response.message,
         });
-      } else {
-        Toast.show({
-          type: "success",
-          text1: "Account Created",
-          text2: "Please login to continue",
-        });
-        router.back();
+        return;
       }
+      setModalVisible(true);
     } catch (error) {
       console.log(error);
     } finally {
@@ -87,13 +87,36 @@ export default function SignUp() {
       }}
     >
       <Toast config={toastConfig} />
-      <ScrollView
-        contentContainerStyle={{
-          flexGrow: 1,
-          justifyContent: "center",
+      <ThemeModal
+        isModalVisible={modalVisible}
+        setIsModalVisible={setModalVisible}
+        onModalClose={() => {
+          router.back();
         }}
       >
-        <KeyboardAvoidingView>
+        <View style={styles.modalContent}>
+          <MaterialIcons name="cloud-done" size={100} color={COLORS.primary} />
+          <ThemeText size={25} fontWeight={"bold"}>
+            Registration Successful 🎉
+          </ThemeText>
+          <ThemeText size={SIZES.fontSize.medium} style={styles.subText}>
+            Your account has been created successfully. Please login to
+            continue.
+          </ThemeText>
+          <PrimaryRoundedButton
+            title="Close"
+            buttonStyle={{
+              width: "100%",
+            }}
+            onPress={() => router.back()}
+          />
+        </View>
+      </ThemeModal>
+      <ScrollView
+        contentContainerStyle={styles.scrollViewContent}
+        showsVerticalScrollIndicator={false}
+      >
+        <KeyboardAvoidingView style={styles.contentWrapper}>
           <View style={styles.signUpTextContainer}>
             <ThemeText size={35} fontWeight={"bold"}>
               Sign Up
@@ -105,12 +128,7 @@ export default function SignUp() {
 
           <FormProvider {...methods}>
             <FormFieldRenderer requiredFields={requiredFields} />
-            <View
-              style={{
-                marginTop: SIZES.marginOrPadding.large,
-                marginBottom: SIZES.marginOrPadding.medium,
-              }}
-            >
+            <View style={styles.buttonContainer}>
               <PrimaryRoundedButton
                 title="SignUp"
                 onPress={handleSubmit(onSubmit)}
@@ -154,10 +172,22 @@ const styles = StyleSheet.create({
     lineHeight: 25,
     marginVertical: SIZES.marginOrPadding.medium,
   },
+  modalContent: { alignItems: "center", justifyContent: "center" },
+  scrollViewContent: {
+    flexGrow: 1,
+    justifyContent: "center",
+  },
+  contentWrapper: {
+    paddingBottom: SIZES.marginOrPadding.large,
+  },
   loginWrapper: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     marginTop: SIZES.marginOrPadding.small,
+  },
+  buttonContainer: {
+    marginTop: SIZES.marginOrPadding.large,
+    marginBottom: SIZES.marginOrPadding.medium,
   },
 });

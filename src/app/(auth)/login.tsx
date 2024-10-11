@@ -82,6 +82,7 @@ export default function Login() {
           flexGrow: 1,
           justifyContent: "center",
         }}
+        showsVerticalScrollIndicator={false}
       >
         <KeyboardAvoidingView>
           <View style={styles.loginTextContainer}>
