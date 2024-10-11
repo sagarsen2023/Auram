@@ -22,7 +22,7 @@ import Toast from "react-native-toast-message";
 import toastConfig from "@/src/components/toast.config";
 import OrSeparator from "@/src/components/or-separator";
 import { Link, router } from "expo-router";
-import { getToken, setToken } from "@/src/hooks/token";
+import { setToken } from "@/src/hooks/token";
 import { useState } from "react";
 
 export default function Login() {
