@@ -1,5 +1,5 @@
 import React, { ReactNode, useEffect, useRef } from "react";
-import { Animated, View, Easing } from "react-native";
+import { Animated, Easing } from "react-native";
 import { useThemeColor } from "@/src/constants/theme";
 import { Tabs } from "expo-router";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
@@ -31,8 +31,8 @@ export default function _layout() {
       <Animated.View
         style={{
           backgroundColor: focused ? COLORS.primary : "transparent",
-          width: 50,
-          height: 50,
+          width: 45,
+          height: 45,
           borderRadius: 50,
           justifyContent: "center",
           alignItems: "center",
@@ -52,6 +52,7 @@ export default function _layout() {
         tabBarStyle: {
           backgroundColor: COLORS.secondary,
           borderRadius: 50,
+          marginVertical: 0,
           marginHorizontal: 20,
           marginBottom: 20,
           overflow: "hidden",
@@ -59,12 +60,19 @@ export default function _layout() {
           paddingHorizontal: 0,
           paddingTop: 0,
           height: 70,
+          borderWidth: 1,
+          borderTopWidth: 1,
+          borderColor: COLORS.primary,
+          borderTopColor: COLORS.primary,
+          position: "absolute",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
         },
       }}
     >
       <Tabs.Screen
         name="(home)"
-
         options={{
           title: "Home",
           tabBarIcon: ({ focused }) => (

@@ -1,8 +1,9 @@
 import { Stack } from "expo-router";
-import { Text } from "react-native";
 import { HeaderLeftContent, HeaderRightContent } from "@/src/components/header-components/home-header.component";
+import { useThemeColor } from "@/src/constants/theme";
 
 export default function RootLayout() {
+  const COLORS = useThemeColor();
   return (
     <Stack
       screenOptions={{
@@ -19,7 +20,7 @@ export default function RootLayout() {
           headerRight: () => <HeaderRightContent />,
           headerShadowVisible: false,
           headerStyle: {
-            backgroundColor: "transparent",
+            backgroundColor: COLORS.secondary,
           },
         }}
       />

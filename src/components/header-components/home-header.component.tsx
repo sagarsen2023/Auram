@@ -33,13 +33,13 @@ export const HeaderRightContent = () => {
 
 const styles = StyleSheet.create({
   headerLeftContentWrapper: {
-    marginLeft: SIZES.marginOrPadding.default,
+    // marginLeft: SIZES.marginOrPadding.default,
   },
   headerLeftText: {
     fontSize: SIZES.fontSize.xLarge,
     fontWeight: "600",
   },
   headerRightContentWrapper: {
-    marginRight: SIZES.marginOrPadding.default,
+    // marginRight: SIZES.marginOrPadding.default,
   },
 });
