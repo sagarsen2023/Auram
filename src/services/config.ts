@@ -11,7 +11,7 @@ async function request<T>(
   options: APIOptions = {}
 ): Promise<T> {
   const url = `${BASE_URL}${endpoint}`;
-  const token = getToken();
+  const token = await getToken();
 
   const response = await fetch(url, {
     ...options,
