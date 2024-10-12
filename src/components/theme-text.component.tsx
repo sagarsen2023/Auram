@@ -11,7 +11,7 @@ export default function ThemeText({
 }: {
   children?: ReactNode;
   fontWeight?: TextStyle["fontWeight"];
-  style?: TextStyle;
+  style?: TextStyle | TextStyle[];
   size?: number;
   type?: "Default" | "Primary";
 }) {

@@ -48,6 +48,7 @@ export default function _layout() {
     <Tabs
       screenOptions={{
         tabBarShowLabel: false,
+        headerShown: false,
         tabBarStyle: {
           backgroundColor: COLORS.secondary,
           borderRadius: 50,
@@ -63,6 +64,7 @@ export default function _layout() {
     >
       <Tabs.Screen
         name="(home)"
+
         options={{
           title: "Home",
           tabBarIcon: ({ focused }) => (
