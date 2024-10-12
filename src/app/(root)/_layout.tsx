@@ -1,10 +1,10 @@
-import { ReactNode } from "react";
+import React, { ReactNode, useEffect, useRef } from "react";
+import { Animated, View, Easing } from "react-native";
 import { useThemeColor } from "@/src/constants/theme";
 import { Tabs } from "expo-router";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Entypo from "@expo/vector-icons/Entypo";
-import { View } from "react-native";
 
 export default function _layout() {
   const COLORS = useThemeColor();
@@ -16,20 +16,31 @@ export default function _layout() {
     focused: boolean;
     icon: ReactNode;
   }) => {
+    const scaleAnim = useRef(new Animated.Value(1)).current;
+
+    useEffect(() => {
+      Animated.timing(scaleAnim, {
+        toValue: focused ? 1.2 : 0.9,
+        duration: 200,
+        easing: Easing.ease,
+        useNativeDriver: true,
+      }).start();
+    }, [focused, scaleAnim]);
+
     return (
-      <View
+      <Animated.View
         style={{
           backgroundColor: focused ? COLORS.primary : "transparent",
-          width: 55,
-          height: 55,
+          width: 50,
+          height: 50,
           borderRadius: 50,
-          display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          transform: [{ scale: scaleAnim }],
         }}
       >
         {icon}
-      </View>
+      </Animated.View>
     );
   };
 
