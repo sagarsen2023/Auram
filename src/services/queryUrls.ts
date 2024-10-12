@@ -8,3 +8,6 @@ export const LOGIN_URL = "/auth/login";
 
 // BANNER URL
 export const BANNER_URL = "/banners";
+
+// CATEGORY URL
+export const CATEGORY_URL = "/categories";

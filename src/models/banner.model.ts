@@ -1,16 +1,5 @@
 import BaseApiResponse from "./base-api-response.model";
-
-// TODO: If image comes in this way then we need to create a separate model for image
-interface Image {
-  _id: string;
-  originalname: string;
-  encoding: string;
-  mimetype: string;
-  size: number;
-  path: string;
-  createdAt: string;
-  updatedAt: string;
-}
+import MediaResponse from "./media.model";
 
 interface User {
   status: boolean;
@@ -26,7 +15,7 @@ export interface BannerData {
   title: string;
   subTitle: string;
   description: string;
-  image: Image;
+  image: MediaResponse;
   link: string;
   buttonText: string;
   createdBy: User;
