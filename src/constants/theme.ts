@@ -4,6 +4,7 @@ export const useThemeColor = () => {
   const colorScheme = useColorScheme();
   const COLORS = {
     primary: colorScheme === "light" ? "#704F38" : "#A67D5D",
+    primaryLite: colorScheme === "light" ? "#ECE3DA" : "#664622",
     secondary: colorScheme === "light" ? "white" : "black",
     text: colorScheme === "light" ? "black" : "white",
     borderColor: colorScheme === "light" ? "lightgray" : "#525050",
@@ -17,8 +18,8 @@ export const SIZES = {
   marginOrPadding: {
     xSmall: 4,
     small: 8,
-    default: 12,
-    medium: 16,
+    medium: 12,
+    default: 16,
     mLarge: 20,
     large: 24,
     xLarge: 32,
