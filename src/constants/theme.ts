@@ -17,7 +17,9 @@ export const SIZES = {
   marginOrPadding: {
     xSmall: 4,
     small: 8,
+    default: 12,
     medium: 16,
+    mLarge: 20,
     large: 24,
     xLarge: 32,
   },

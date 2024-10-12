@@ -11,15 +11,22 @@ export default function RootLayout() {
       }}
     >
       <Stack.Screen name="index" />
-      <Stack.Screen name="(welcome)" options={{
-        animation: "fade_from_bottom",
-        animationDuration: 300,
-      }}/>
+      <Stack.Screen
+        name="(welcome)"
+        options={{
+          animation: "fade_from_bottom",
+          animationDuration: 300,
+        }}
+      />
       <Stack.Screen name="(auth)" />
-      <Stack.Screen name="(root)" options={{
-        animation: "fade_from_bottom",
-        animationDuration: 300,
-      }}/>
+      <Stack.Screen
+        name="(root)"
+        options={{
+          animation: "fade_from_bottom",
+          animationDuration: 300,
+        }}
+      />
+      <Stack.Screen name="+not-found" />
     </Stack>
   );
 }
