@@ -3,8 +3,8 @@ import React from "react";
 import { SIZES, useThemeColor } from "@/src/constants/theme";
 import { BannerData } from "@/src/models/banner.model";
 import ThemeText from "../theme-text.component";
-import { IMAGE_URL } from "@/src/services/queryUrls";
 import PrimaryRoundedButton from "../primary-rounded-button.component";
+import imageValidator from "@/src/utils/imageValidator";
 
 const width = Dimensions.get("window").width;
 
@@ -27,12 +27,13 @@ const BannerCard = ({ singleBannerData }: { singleBannerData: BannerData }) => {
               {singleBannerData.description.toLocaleLowerCase()}
             </ThemeText>
           )}
-          <PrimaryRoundedButton title="Shop Now" buttonStyle={styles.buttonStyle} />
+          <PrimaryRoundedButton
+            title="Shop Now"
+            buttonStyle={styles.buttonStyle}
+          />
         </View>
         <Image
-          source={{
-            uri: `${IMAGE_URL}/${singleBannerData.image.path}`,
-          }}
+          source={imageValidator(singleBannerData.image.path)}
           style={styles.image}
           resizeMode="cover"
         />
