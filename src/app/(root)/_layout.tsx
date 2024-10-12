@@ -1,14 +1,31 @@
-import { Stack } from "expo-router";
-
-export default function RootLayout() {
+import { Tabs } from "expo-router";
+export default function _layout() {
   return (
-    <Stack>
-      <Stack.Screen
-        name="index"
+    <Tabs>
+      <Tabs.Screen
+        name="(home)"
         options={{
           title: "Home",
         }}
       />
-    </Stack>
+      <Tabs.Screen
+        name="(cart)"
+        options={{
+          title: "Cart",
+        }}
+      />
+      <Tabs.Screen
+        name="wishlist"
+        options={{
+          title: "Wishlist",
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: "Profile",
+        }}
+      />
+    </Tabs>
   );
 }
