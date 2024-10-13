@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect, useRef } from "react";
-import { Animated, Easing } from "react-native";
-import { useThemeColor } from "@/src/constants/theme";
+import { Animated, Easing, Platform } from "react-native";
+import { SIZES, useThemeColor } from "@/src/constants/theme";
 import { Tabs } from "expo-router";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import AntDesign from "@expo/vector-icons/AntDesign";
@@ -53,8 +53,8 @@ export default function _layout() {
           backgroundColor: COLORS.secondary,
           borderRadius: 50,
           marginVertical: 0,
-          marginHorizontal: 20,
-          marginBottom: 20,
+          marginHorizontal: 60,
+          marginBottom: Platform.OS === "ios" ? 20 : 5,
           overflow: "hidden",
           paddingBottom: 0,
           paddingHorizontal: 0,
