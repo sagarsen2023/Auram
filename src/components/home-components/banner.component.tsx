@@ -11,31 +11,35 @@ const Banner = ({ bannerData }: { bannerData: BannerData[] | null }) => {
   const [currentIndex, setCurrentIndex] = React.useState(0);
   return (
     <View>
-      <FlatList
-        ref={flatListRef}
-        style={{ width }}
-        data={bannerData}
-        keyExtractor={(item) => item._id}
-        renderItem={({ item }) => <BannerCard singleBannerData={item} />}
-        horizontal
-        scrollEnabled
-        showsHorizontalScrollIndicator={false}
-        snapToAlignment="center"
-        scrollEventThrottle={50}
-        decelerationRate={"fast"}
-        pagingEnabled={true}
-        onScroll={(event) => {
-          const slideIndex = Math.ceil(
-            event.nativeEvent.contentOffset.x / width
-          );
-          setCurrentIndex(slideIndex);
-        }}
-      />
-      <View style={styles.dotComponentContainer}>
-        {bannerData?.map((_, index) => (
-          <DotComponent key={index} active={currentIndex === index} />
-        ))}
-      </View>
+      {bannerData && (
+        <>
+          <FlatList
+            ref={flatListRef}
+            style={{ width }}
+            data={bannerData}
+            keyExtractor={(item) => item._id}
+            renderItem={({ item }) => <BannerCard singleBannerData={item} />}
+            horizontal
+            scrollEnabled
+            showsHorizontalScrollIndicator={false}
+            snapToAlignment="center"
+            scrollEventThrottle={50}
+            decelerationRate={"fast"}
+            pagingEnabled={true}
+            onScroll={(event) => {
+              const slideIndex = Math.ceil(
+                event.nativeEvent.contentOffset.x / width
+              );
+              setCurrentIndex(slideIndex);
+            }}
+          />
+          <View style={styles.dotComponentContainer}>
+            {bannerData?.map((_, index) => (
+              <DotComponent key={index} active={currentIndex === index} />
+            ))}
+          </View>
+        </>
+      )}
     </View>
   );
 };

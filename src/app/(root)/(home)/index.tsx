@@ -6,6 +6,7 @@ import homeAPI from "@/src/services/home.service";
 import { SIZES, useThemeColor } from "@/src/constants/theme";
 import { CategoryItem } from "@/src/models/categories-and-items/category.model";
 import categoryAPI from "@/src/services/product.service";
+import CategoryList from "@/src/components/home-components/category-list.component";
 
 const Home = () => {
   const COLORS = useThemeColor();
@@ -36,7 +37,9 @@ const Home = () => {
         <Banner bannerData={bannerData} />
 
         {/* Category Section */}
-        {/* TODO: Complete Category Section */}
+        <View style={styles.bodySection}>
+          <CategoryList categories={categories} />
+        </View>
       </ScrollView>
     </View>
   );
@@ -48,5 +51,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingVertical: SIZES.marginOrPadding.small,
+  },
+  bodySection: {
+    marginHorizontal: SIZES.marginOrPadding.default,
   },
 });
