@@ -10,6 +10,7 @@ import CategoryList from "@/src/components/home-components/category-list.compone
 import PageIndicator from "@/src/components/page-indicator.component";
 import { Product } from "@/src/models/categories-and-items/featured-item.model.ts";
 import ProductListRenderer from "@/src/components/home-components/product-list-renderer.component";
+import HomeFooter from "@/src/components/home-components/home-footer.component";
 
 const Home = () => {
   const COLORS = useThemeColor();
@@ -52,8 +53,8 @@ const Home = () => {
       ]}
     >
       <ScrollView
-      showsVerticalScrollIndicator={false}
-      contentContainerStyle={styles.scrollViewStyle}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scrollViewStyle}
       >
         {/* Banner Section */}
         <Banner bannerData={bannerData} />
@@ -77,7 +78,9 @@ const Home = () => {
               products={featuredProducts}
             />
           )}
+
           {/* Footer */}
+          <HomeFooter />
         </View>
       </ScrollView>
     </View>
@@ -91,7 +94,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollViewStyle: {
-    paddingBottom:100,
+    paddingBottom: 100,
   },
   bodySection: {
     marginHorizontal: SIZES.marginOrPadding.default,
