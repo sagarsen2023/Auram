@@ -3,9 +3,16 @@ import React from "react";
 import ThemeText from "../theme-text.component";
 import { SIZES, useThemeColor } from "@/src/constants/theme";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useState, useEffect } from "react";
+import { getUserName } from "@/src/hooks/username";
 
 export const HeaderLeftContent = () => {
+  const [username, setUsername] = useState<string>("");
   const COLORS = useThemeColor();
+  useEffect(() => {
+    getUserName().then((name) => setUsername(name ? name : ""));
+  }, []);
+
   return (
     <View style={styles.headerLeftContentWrapper}>
       <ThemeText
@@ -16,7 +23,7 @@ export const HeaderLeftContent = () => {
           },
         ]}
       >
-        Welcome Sagar Sen!{" "}
+        Welcome {username}
       </ThemeText>
     </View>
   );

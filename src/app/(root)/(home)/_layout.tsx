@@ -1,6 +1,6 @@
 import { Stack } from "expo-router";
-import { HeaderLeftContent, HeaderRightContent } from "@/src/components/header-components/home-header.component";
 import { useThemeColor } from "@/src/constants/theme";
+import { HeaderLeftContent, HeaderRightContent } from "@/src/components/header-components/home-header.component";
 
 export default function RootLayout() {
   const COLORS = useThemeColor();

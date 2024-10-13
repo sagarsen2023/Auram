@@ -88,7 +88,6 @@ export default Home;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingVertical: SIZES.marginOrPadding.small,
   },
   scrollViewStyle: {
     paddingBottom:100,
