@@ -4,6 +4,7 @@ import { Product } from "@/src/models/categories-and-items/featured-item.model.t
 import imageValidator from "@/src/utils/imageValidator";
 import { SIZES } from "@/src/constants/theme";
 import ThemeText from "../theme-text.component";
+import priceFormatter from "@/src/utils/priceFormatter";
 
 // TODO: Add product details navigation
 
@@ -16,7 +17,7 @@ const MainProductCard = ({ product }: { product: Product }) => {
       />
       <View>
         <ThemeText style={styles.itemName}>{product.itemName}</ThemeText>
-        <ThemeText style={styles.itemPrice}>{product.withGstPrice}</ThemeText>
+        <ThemeText style={styles.itemPrice}>{priceFormatter(product.withGstPrice)}</ThemeText>
       </View>
     </View>
   );
@@ -42,5 +43,7 @@ const styles = StyleSheet.create({
   itemPrice: {
     fontSize: SIZES.fontSize.medium,
     marginTop: SIZES.marginOrPadding.xSmall,
+    fontWeight: "600",
+    letterSpacing: 2,
   },
 });
