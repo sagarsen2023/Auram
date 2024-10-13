@@ -5,7 +5,7 @@ import MainProductCard from "../cards/main-product-card";
 import ThemeText from "../theme-text.component";
 import { SIZES } from "@/src/constants/theme";
 
-const ProductListRenderer = ({
+const ProductList = ({
   title,
   products,
 }: {
@@ -24,7 +24,7 @@ const ProductListRenderer = ({
   );
 };
 
-export default ProductListRenderer;
+export default ProductList;
 
 const styles = StyleSheet.create({
   container: {

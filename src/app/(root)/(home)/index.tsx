@@ -9,8 +9,9 @@ import { categoryAPI, productAPI } from "@/src/services/product.service";
 import CategoryList from "@/src/components/home-components/category-list.component";
 import PageIndicator from "@/src/components/page-indicator.component";
 import { Product } from "@/src/models/categories-and-items/featured-item.model.ts";
-import ProductListRenderer from "@/src/components/home-components/product-list-renderer.component";
+import ProductList from "@/src/components/home-components/product-list.component";
 import HomeFooter from "@/src/components/home-components/home-footer.component";
+import CollectionList from "@/src/components/home-components/collection-list.component";
 
 const Home = () => {
   const COLORS = useThemeColor();
@@ -65,18 +66,18 @@ const Home = () => {
 
           {/* Featured Products */}
           {featuredProducts && (
-            <ProductListRenderer
+            <ProductList
               title="Featured Products"
               products={featuredProducts}
             />
           )}
 
+          {/* Collections */}
+          <CollectionList />
+
           {/* Latest Products */}
           {featuredProducts && (
-            <ProductListRenderer
-              title="Latest Products"
-              products={featuredProducts}
-            />
+            <ProductList title="Latest Products" products={featuredProducts} />
           )}
 
           {/* Footer */}
