@@ -1,5 +1,11 @@
 import { useColorScheme } from "react-native";
 
+// ? Reason is not found.
+import { LogBox } from 'react-native';
+// ! Ignore log notification by message:
+// LogBox.ignoreLogs(['Warning: ...']);
+LogBox.ignoreLogs(['Sending `appearanceChanged` with no listeners registered.']);
+
 export const useThemeColor = () => {
   const colorScheme = useColorScheme();
   const COLORS = {
