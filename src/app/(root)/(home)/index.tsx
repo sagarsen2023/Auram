@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import Banner from "@/src/components/home-components/banner.component";
 import { BannerData } from "@/src/models/banner.model";
@@ -17,6 +17,7 @@ import ProductList from "@/src/components/home-components/product-list.component
 import HomeFooter from "@/src/components/home-components/home-footer.component";
 import CollectionList from "@/src/components/home-components/collection-list.component";
 import { CollectionItem } from "@/src/models/categories-and-items/collection.model";
+import SearchBar from "@/src/components/search-bar.component";
 
 const Home = () => {
   const COLORS = useThemeColor();
@@ -61,6 +62,7 @@ const Home = () => {
         },
       ]}
     >
+      <SearchBar />
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollViewStyle}
@@ -105,6 +107,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollViewStyle: {
+    paddingTop: SIZES.marginOrPadding.small,
     paddingBottom: 100,
   },
   bodySection: {
