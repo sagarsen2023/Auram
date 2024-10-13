@@ -11,6 +11,7 @@ import ThemeText from "../theme-text.component";
 import { SIZES, useThemeColor } from "@/src/constants/theme";
 
 // TODO: Implement onPress for category
+// TODO: Implement See All functionality
 
 const CategoryList = ({
   categories,

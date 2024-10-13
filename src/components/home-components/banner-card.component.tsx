@@ -8,6 +8,8 @@ import imageValidator from "@/src/utils/imageValidator";
 
 const width = Dimensions.get("window").width;
 
+// TODO: Implement onPress for banner
+
 const BannerCard = ({ singleBannerData }: { singleBannerData: BannerData }) => {
   const COLORS = useThemeColor();
   return (
@@ -30,6 +32,7 @@ const BannerCard = ({ singleBannerData }: { singleBannerData: BannerData }) => {
           <PrimaryRoundedButton
             title="Shop Now"
             buttonStyle={styles.buttonStyle}
+            onPress={() => console.log("Button Clicked")}
           />
         </View>
         <Image
