@@ -3,7 +3,7 @@ import React from "react";
 import { SIZES, useThemeColor } from "@/src/constants/theme";
 import { BannerData } from "@/src/models/banner.model";
 import ThemeText from "../theme-text.component";
-import PrimaryRoundedButton from "../primary-rounded-button.component";
+import PrimaryRoundedButton from "@/src/components/buttons/primary-rounded-button.component";
 import imageValidator from "@/src/utils/imageValidator";
 
 const width = Dimensions.get("window").width;

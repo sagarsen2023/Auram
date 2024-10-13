@@ -6,7 +6,7 @@ import {
   ViewStyle,
   TextStyle,
 } from "react-native";
-import { useThemeColor } from "../constants/theme";
+import { useThemeColor } from "../../constants/theme";
 
 export default function PrimaryRoundedButton({
   title,

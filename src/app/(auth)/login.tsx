@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useForm, FormProvider } from "react-hook-form";
-import PrimaryRoundedButton from "@/src/components/primary-rounded-button.component";
+import PrimaryRoundedButton from "@/src/components/buttons/primary-rounded-button.component";
 import {
   loginValidator,
   LoginValidatorType,
