@@ -1,14 +1,6 @@
 import BaseApiResponse from "./base-api-response.model";
 import MediaResponse from "./media.model";
-
-interface User {
-  status: boolean;
-  _id: string;
-  email: string;
-  name: string;
-  createdAt: string;
-  updatedAt: string;
-}
+import UserResponse from "./user.model";
 
 export interface BannerData {
   _id: string;
@@ -18,8 +10,8 @@ export interface BannerData {
   image: MediaResponse;
   link: string;
   buttonText: string;
-  createdBy: User;
-  updatedBy?: User;
+  createdBy: UserResponse;
+  updatedBy?: UserResponse;
   createdAt: string;
   updatedAt: string;
 }

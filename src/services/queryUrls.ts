@@ -12,5 +12,8 @@ export const BANNER_URL = "/banners";
 // CATEGORY URL
 export const CATEGORY_URL = "/categories";
 
+// COLLECTION URL
+export const COLLECTION_URL = "/collections";
+
 // FEATURED PRODUCTS URL
 export const FEATURED_PRODUCTS_URL = "/items/user/feature";
