@@ -1,4 +1,4 @@
-import { ActivityIndicator, ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import Banner from "@/src/components/home-components/banner.component";
 import { BannerData } from "@/src/models/banner.model";
@@ -77,6 +77,7 @@ const Home = () => {
               products={featuredProducts}
             />
           )}
+          {/* Footer */}
         </View>
       </ScrollView>
     </View>

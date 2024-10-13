@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect, useRef } from "react";
 import { Animated, Easing, Platform } from "react-native";
-import { SIZES, useThemeColor } from "@/src/constants/theme";
+import { useThemeColor } from "@/src/constants/theme";
 import { Tabs } from "expo-router";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import AntDesign from "@expo/vector-icons/AntDesign";
@@ -68,6 +68,7 @@ export default function _layout() {
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
+          elevation: 0,
         },
       }}
     >
