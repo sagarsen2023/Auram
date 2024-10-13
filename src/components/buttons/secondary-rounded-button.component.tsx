@@ -7,6 +7,7 @@ import {
   TextStyle,
 } from "react-native";
 import { SIZES, useThemeColor } from "../../constants/theme";
+import { ReactNode } from "react";
 
 export default function SecondaryRoundedButton({
   title,
@@ -14,9 +15,11 @@ export default function SecondaryRoundedButton({
   isLoading,
   buttonStyle,
   textStyle,
+  children,
 }: {
-  title: string;
+  title?: string;
   isLoading?: boolean;
+  children?: ReactNode;
   onPress?: () => void;
   buttonStyle?: ViewStyle;
   textStyle?: TextStyle;
@@ -46,7 +49,10 @@ export default function SecondaryRoundedButton({
       {isLoading ? (
         <ActivityIndicator color={COLORS.secondary} size={"small"} style={{}} />
       ) : (
-        <Text style={[styles.buttonText, textStyle]}>{title}</Text>
+        <>
+          {title && <Text style={[styles.buttonText, textStyle]}>{title}</Text>}
+          {children}
+        </>
       )}
     </TouchableOpacity>
   );

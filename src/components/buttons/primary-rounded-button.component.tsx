@@ -7,6 +7,7 @@ import {
   TextStyle,
 } from "react-native";
 import { useThemeColor } from "../../constants/theme";
+import { ReactNode } from "react";
 
 export default function PrimaryRoundedButton({
   title,
@@ -14,8 +15,10 @@ export default function PrimaryRoundedButton({
   isLoading,
   buttonStyle,
   textStyle,
+  children,
 }: {
-  title: string;
+  title?: string;
+  children?: ReactNode;
   isLoading?: boolean;
   onPress?: () => void;
   buttonStyle?: ViewStyle;
@@ -44,7 +47,10 @@ export default function PrimaryRoundedButton({
       {isLoading ? (
         <ActivityIndicator color={COLORS.secondary} size={"small"} style={{}} />
       ) : (
-        <Text style={[styles.buttonText, textStyle]}>{title}</Text>
+        <>
+          {title && <Text style={[styles.buttonText, textStyle]}>{title}</Text>}
+          {children}
+        </>
       )}
     </TouchableOpacity>
   );
