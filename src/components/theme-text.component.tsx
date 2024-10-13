@@ -8,17 +8,20 @@ export default function ThemeText({
   size,
   fontWeight,
   type = "Default",
+  numberOfLines,
 }: {
   children?: ReactNode;
   fontWeight?: TextStyle["fontWeight"];
   style?: TextStyle | TextStyle[];
   size?: number;
   type?: "Default" | "Primary";
+  numberOfLines?: number;
 }) {
   const COLOR = useThemeColor();
   return (
     <Text
       maxFontSizeMultiplier={1}
+      numberOfLines={numberOfLines}
       style={[
         {
           color: type === "Default" ? COLOR.text : COLOR.primary,

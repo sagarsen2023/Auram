@@ -14,7 +14,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, FormProvider } from "react-hook-form";
-import PrimaryRoundedButton from "@/src/components/primary-rounded-button.component";
+import PrimaryRoundedButton from "@/src/components/buttons/primary-rounded-button.component";
 import OrSeparator from "@/src/components/or-separator";
 import { router } from "expo-router";
 import {

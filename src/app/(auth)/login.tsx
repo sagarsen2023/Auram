@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useForm, FormProvider } from "react-hook-form";
-import PrimaryRoundedButton from "@/src/components/primary-rounded-button.component";
+import PrimaryRoundedButton from "@/src/components/buttons/primary-rounded-button.component";
 import {
   loginValidator,
   LoginValidatorType,
@@ -24,6 +24,7 @@ import OrSeparator from "@/src/components/or-separator";
 import { Link, router } from "expo-router";
 import { setToken } from "@/src/hooks/token";
 import { useState } from "react";
+import { setUserName } from "@/src/hooks/username";
 
 export default function Login() {
   const COLORS = useThemeColor();
@@ -60,6 +61,7 @@ export default function Login() {
         return;
       }
       await setToken(response.data?.token!);
+      await setUserName(response.data?.user?.name!);
       router.replace("/");
     } catch (error) {
       console.error(error);

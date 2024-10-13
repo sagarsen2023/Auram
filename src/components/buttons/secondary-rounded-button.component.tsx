@@ -6,17 +6,20 @@ import {
   ViewStyle,
   TextStyle,
 } from "react-native";
-import { useThemeColor } from "../constants/theme";
+import { SIZES, useThemeColor } from "../../constants/theme";
+import { ReactNode } from "react";
 
-export default function PrimaryRoundedButton({
+export default function SecondaryRoundedButton({
   title,
   onPress,
   isLoading,
   buttonStyle,
   textStyle,
+  children,
 }: {
-  title: string;
+  title?: string;
   isLoading?: boolean;
+  children?: ReactNode;
   onPress?: () => void;
   buttonStyle?: ViewStyle;
   textStyle?: TextStyle;
@@ -24,15 +27,17 @@ export default function PrimaryRoundedButton({
   const COLORS = useThemeColor();
   const styles = StyleSheet.create({
     button: {
-      backgroundColor: COLORS.primary,
-      padding: 15,
+      backgroundColor: "transparent",
+      padding: SIZES.marginOrPadding.default,
       borderRadius: 50,
       alignItems: "center",
       justifyContent: "center",
+      borderWidth: 1,
+      borderColor: COLORS.primary,
     },
     buttonText: {
-      color: "white",
-      fontSize: 18,
+      color: COLORS.text,
+      fontSize: SIZES.fontSize.large,
     },
   });
   return (
@@ -44,7 +49,10 @@ export default function PrimaryRoundedButton({
       {isLoading ? (
         <ActivityIndicator color={COLORS.secondary} size={"small"} style={{}} />
       ) : (
-        <Text style={[styles.buttonText, textStyle]}>{title}</Text>
+        <>
+          {title && <Text style={[styles.buttonText, textStyle]}>{title}</Text>}
+          {children}
+        </>
       )}
     </TouchableOpacity>
   );

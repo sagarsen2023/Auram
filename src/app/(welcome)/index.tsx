@@ -2,7 +2,7 @@ import React from "react";
 import { Image, Text, StyleSheet, View, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useThemeColor } from "@/src/constants/theme";
-import PrimaryRoundedButton from "@/src/components/primary-rounded-button.component";
+import PrimaryRoundedButton from "@/src/components/buttons/primary-rounded-button.component";
 import { Link, router } from "expo-router";
 
 const Welcome = () => {
