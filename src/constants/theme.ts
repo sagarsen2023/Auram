@@ -31,6 +31,15 @@ export const SIZES = {
     large: 18,
     xLarge: 20,
   },
+  borderRadius: {
+    xSmall: 4,
+    small: 8,
+    medium: 12,
+    default: 16,
+    mLarge: 20,
+    large: 24,
+    xLarge: 32,
+  },
 };
 
 export const TYPOGRAPHY = {

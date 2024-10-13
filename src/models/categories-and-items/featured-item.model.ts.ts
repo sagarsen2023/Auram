@@ -33,7 +33,7 @@ interface MetalRateDetails {
   rate: number;
 }
 
-export interface Item {
+export interface Product {
   _id: string;
   itemName: string;
   itemDescription: string;
@@ -63,5 +63,5 @@ export interface Item {
 
 export default interface FeaturedItemApiResponse extends BaseApiResponse {
   status: boolean;
-  data: Item[];
+  data: Product[];
 }

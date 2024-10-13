@@ -3,10 +3,12 @@ import FeaturedItemApiResponse from "../models/categories-and-items/featured-ite
 import { fetchAPI } from "./config";
 import { CATEGORY_URL, FEATURED_PRODUCTS_URL } from "./queryUrls";
 
-const categoryAPI = {
+export const categoryAPI = {
   getAllCategories: async () => fetchAPI.get<CategoryResponse>(CATEGORY_URL),
+};
+
+export const productAPI = {
   getFeaturedCollection: async () =>
     fetchAPI.get<FeaturedItemApiResponse>(FEATURED_PRODUCTS_URL),
 };
 
-export default categoryAPI;
