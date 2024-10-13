@@ -5,13 +5,18 @@ import { BannerData } from "@/src/models/banner.model";
 import homeAPI from "@/src/services/home.service";
 import { SIZES, useThemeColor } from "@/src/constants/theme";
 import { CategoryItem } from "@/src/models/categories-and-items/category.model";
-import { categoryAPI, productAPI } from "@/src/services/product.service";
+import {
+  categoryAPI,
+  collectionAPI,
+  productAPI,
+} from "@/src/services/product.service";
 import CategoryList from "@/src/components/home-components/category-list.component";
 import PageIndicator from "@/src/components/page-indicator.component";
 import { Product } from "@/src/models/categories-and-items/featured-item.model.ts";
 import ProductList from "@/src/components/home-components/product-list.component";
 import HomeFooter from "@/src/components/home-components/home-footer.component";
 import CollectionList from "@/src/components/home-components/collection-list.component";
+import { CollectionItem } from "@/src/models/categories-and-items/collection.model";
 
 const Home = () => {
   const COLORS = useThemeColor();
@@ -21,6 +26,7 @@ const Home = () => {
   const [featuredProducts, setFeaturedProducts] = useState<Product[] | null>(
     null
   );
+  const [collections, setCollections] = useState<CollectionItem[] | null>(null);
 
   useEffect(() => {
     const fetchAllData = async () => {
@@ -33,6 +39,8 @@ const Home = () => {
           await productAPI.getFeaturedCollection();
         if (featuredProductsResponse.status)
           setFeaturedProducts(featuredProductsResponse.data);
+        const collectionResponse = await collectionAPI.getAllCollections();
+        if (collectionResponse.status) setCollections(collectionResponse.data);
       } catch (error) {
         console.log(error);
       } finally {
@@ -58,7 +66,7 @@ const Home = () => {
         contentContainerStyle={styles.scrollViewStyle}
       >
         {/* Banner Section */}
-        <Banner bannerData={bannerData} />
+        {bannerData && <Banner bannerData={bannerData} />}
 
         <View style={styles.bodySection}>
           {/* Category Section */}
@@ -73,7 +81,9 @@ const Home = () => {
           )}
 
           {/* Collections */}
-          <CollectionList />
+          {collections && (
+            <CollectionList title="Top Collections" collections={collections} />
+          )}
 
           {/* Latest Products */}
           {featuredProducts && (
