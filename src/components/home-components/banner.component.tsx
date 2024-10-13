@@ -5,7 +5,7 @@ import { BannerData } from "@/src/models/banner.model";
 import DotComponent from "./dot.component";
 import { SIZES } from "@/src/constants/theme";
 
-const Banner = ({ bannerData }: { bannerData: BannerData[] | null }) => {
+const Banner = ({ bannerData }: { bannerData: BannerData[] }) => {
   const width = Dimensions.get("window").width;
   const flatListRef = useRef<FlatList>(null);
   const [currentIndex, setCurrentIndex] = React.useState(0);

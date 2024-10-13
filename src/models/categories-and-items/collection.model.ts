@@ -2,7 +2,7 @@ import BaseApiResponse from "../base-api-response.model";
 import MediaResponse from "../media.model";
 import UserResponse from "../user.model";
 
-interface CollectionItem {
+export interface CollectionItem {
   _id: string;
   title: string;
   description: string;
