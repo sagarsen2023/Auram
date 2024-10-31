@@ -45,9 +45,9 @@ const Welcome = () => {
     >
       <ScrollView>
         <View style={styles.container}>
-          {/* ON boarding Image */}
+          {/* Onboarding Image */}
           <Image
-            source={require("@/src/assets/images/onboarding/onnoardingImage1.png")}
+            source={require("@/src/assets/images/onboarding/onboardingImage1.png")}
             style={styles.imageContainer}
             resizeMode="cover"
           />
