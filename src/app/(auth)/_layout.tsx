@@ -7,6 +7,7 @@ export default function _layout() {
         headerShown: false,
       }}
     >
+      <Stack.Screen name="auth-type-selector" />
       <Stack.Screen name="signup" />
       <Stack.Screen name="login" />
     </Stack>
