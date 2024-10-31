@@ -7,3 +7,7 @@ export async function getUserName(): Promise<string | null> {
 export async function setUserName(username: string) {
   await AsyncStorage.setItem("username", username);
 }
+
+export async function removeUserName() {
+  await AsyncStorage.removeItem("username");
+}

@@ -7,3 +7,7 @@ export async function getToken(): Promise<string | null> {
 export async function setToken(token: string) {
   await AsyncStorage.setItem("bearerToken", token);
 }
+
+export async function removeToken() {
+  await AsyncStorage.removeItem("bearerToken");
+}

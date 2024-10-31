@@ -25,27 +25,29 @@ const Welcome = () => {
       fontSize: 35,
       fontWeight: "bold",
       letterSpacing: 2,
-      color: COLORS.text
+      color: COLORS.text,
     },
     subText: {
       fontSize: 16,
       lineHeight: 25,
       marginVertical: 15,
       textAlign: "center",
-      color: COLORS.text
+      color: COLORS.text,
     },
   });
 
   return (
-    <SafeAreaView style={{
-      flex: 1,
-      backgroundColor: COLORS.secondary
-    }}>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        backgroundColor: COLORS.secondary,
+      }}
+    >
       <ScrollView>
         <View style={styles.container}>
-          {/* ON boarding Image */}
+          {/* Onboarding Image */}
           <Image
-            source={require("@/src/assets/images/onboarding/onnoardingImage1.png")}
+            source={require("@/src/assets/images/onboarding/onboardingImage1.png")}
             style={styles.imageContainer}
             resizeMode="cover"
           />
@@ -88,9 +90,9 @@ const Welcome = () => {
                 color: COLORS.text,
               }}
             >
-              Already have an account?{" "}
+              Want to get started right now?{" "}
               <Link
-                href={"/(auth)/login"}
+                href={"/(auth)/auth-type-selector"}
                 replace
                 style={{
                   fontWeight: "bold",

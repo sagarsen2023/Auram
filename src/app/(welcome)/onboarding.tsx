@@ -156,8 +156,8 @@ export default function Onboarding() {
               padding: 16,
               alignItems: "flex-end",
             }}
-            onPress={()=>{
-              router.replace("/(auth)/login")
+            onPress={() => {
+              router.replace("/(auth)/auth-type-selector");
             }}
           >
             <Text
@@ -213,7 +213,7 @@ export default function Onboarding() {
             onPress={handleNext}
             currentIndex={currentIndex}
             totalItemsCount={sliderData.length - 1}
-            onEndReached={() => router.replace("/(auth)/login")}
+            onEndReached={() => router.replace("/(auth)/auth-type-selector")}
           />
         </View>
       </ScrollView>
