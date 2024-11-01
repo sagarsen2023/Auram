@@ -10,6 +10,10 @@ const _layout = () => {
       screenOptions={{
         animation: "slide_from_right",
         headerShadowVisible: false,
+        headerTitleStyle:{
+          color: COLORS.primary,
+          fontWeight: "600"
+        },
         headerStyle: {
           backgroundColor: COLORS.secondary,
         },
@@ -19,6 +23,7 @@ const _layout = () => {
         name="all-collections"
         options={{
           title: "All Collections",
+          headerTitleAlign: "center",
           headerLeft: () => <SecondaryBackButton />,
         }}
       />
