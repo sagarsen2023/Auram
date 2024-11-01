@@ -10,15 +10,23 @@ const _layout = () => {
       screenOptions={{
         animation: "slide_from_right",
         headerShadowVisible: false,
-        headerTitleStyle:{
+        headerTitleStyle: {
           color: COLORS.primary,
-          fontWeight: "600"
+          fontWeight: "600",
         },
         headerStyle: {
           backgroundColor: COLORS.secondary,
         },
       }}
     >
+      <Stack.Screen
+        name="all-categories"
+        options={{
+          title: "All Categories",
+          headerTitleAlign: "center",
+          headerLeft: () => <SecondaryBackButton />,
+        }}
+      />
       <Stack.Screen
         name="all-collections"
         options={{
