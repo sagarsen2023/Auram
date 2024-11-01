@@ -100,7 +100,7 @@ const Welcome = () => {
                   textDecorationLine: "underline",
                 }}
               >
-                Login
+                Let's Go
               </Link>
             </Text>
           </View>

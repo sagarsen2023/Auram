@@ -26,6 +26,13 @@ export default function RootLayout() {
           animationDuration: 300,
         }}
       />
+      <Stack.Screen
+        name="(external-routes)"
+        options={{
+          animation: "slide_from_right",
+          animationDuration: 150,
+        }}
+      />
       <Stack.Screen name="+not-found" />
     </Stack>
   );

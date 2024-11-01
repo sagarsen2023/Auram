@@ -9,9 +9,9 @@ import { CategoryItem } from "@/src/models/categories-and-items/category.model";
 import CategoryRoundedCard from "../cards/category-rounded-card.component";
 import ThemeText from "../theme-text.component";
 import { SIZES, useThemeColor } from "@/src/constants/theme";
+import { Link } from "expo-router";
 
 // TODO: Implement onPress for category
-// TODO: Implement See All functionality
 
 const CategoryList = ({
   categories,
@@ -25,14 +25,16 @@ const CategoryList = ({
         <View style={styles.container}>
           <View style={styles.textContainer}>
             <ThemeText style={styles.headingStyle}>Categories</ThemeText>
-            <ThemeText
-              style={{
-                color: COLORS.primary,
-                fontWeight: "bold",
-              }}
-            >
-              See All
-            </ThemeText>
+            <Link href={"/(external-routes)/all-categories"} push>
+              <ThemeText
+                style={{
+                  color: COLORS.primary,
+                  fontWeight: "bold",
+                }}
+              >
+                See All
+              </ThemeText>
+            </Link>
           </View>
 
           <FlatList
@@ -67,6 +69,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   textContainer: {
+    backgroundColor: "transparent",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",

@@ -5,9 +5,9 @@ import CollectionCard from "../cards/collection-card.component";
 import ThemeText from "../theme-text.component";
 import SecondaryRoundedButton from "../buttons/secondary-rounded-button.component";
 import { SIZES } from "@/src/constants/theme";
+import { router } from "expo-router";
 
 // TODO: Implement onPress for CollectionList
-// TODO: Implement View All button redirection
 
 const CollectionList = ({
   collections,
@@ -19,13 +19,7 @@ const CollectionList = ({
   const selectedCollections = collections.slice(0, 4);
   return (
     <View style={styles.container}>
-      {title && (
-        <ThemeText
-          style={styles.title}
-        >
-          {title}
-        </ThemeText>
-      )}
+      {title && <ThemeText style={styles.title}>{title}</ThemeText>}
       <View style={styles.collectionCardWrapper}>
         {selectedCollections.map((collection) => (
           <CollectionCard key={collection._id} collection={collection} />
@@ -35,6 +29,7 @@ const CollectionList = ({
         <SecondaryRoundedButton
           title="View All"
           buttonStyle={styles.buttonStyle}
+          onPress={() => router.push("/(external-routes)/all-collections")}
         />
       </View>
     </View>
@@ -50,7 +45,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: SIZES.fontSize.large,
     marginBottom: SIZES.marginOrPadding.default,
-    fontWeight: "bold", 
+    fontWeight: "bold",
   },
   collectionCardWrapper: {
     flexDirection: "row",

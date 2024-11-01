@@ -21,8 +21,8 @@ export default function SecondaryRoundedButton({
   isLoading?: boolean;
   children?: ReactNode;
   onPress?: () => void;
-  buttonStyle?: ViewStyle;
-  textStyle?: TextStyle;
+  buttonStyle?: ViewStyle | ViewStyle[];
+  textStyle?: TextStyle | TextStyle[];
 }) {
   const COLORS = useThemeColor();
   const styles = StyleSheet.create({
