@@ -1,25 +1,37 @@
-import { Image, StyleSheet, View } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  View,
+  TouchableWithoutFeedback,
+} from "react-native";
 import React from "react";
 import { Product } from "@/src/models/categories-and-items/featured-item.model.ts";
 import imageValidator from "@/src/utils/imageValidator";
 import { SIZES } from "@/src/constants/theme";
 import ThemeText from "../theme-text.component";
 import priceFormatter from "@/src/utils/priceFormatter";
-
-// TODO: Add product details navigation
+import { router } from "expo-router";
 
 const MainProductCard = ({ product }: { product: Product }) => {
   return (
-    <View style={styles.container}>
-      <Image
-        style={styles.imageStyle}
-        source={imageValidator(product.thumbnail.path)}
-      />
-      <View>
-        <ThemeText style={styles.itemName}>{product.itemName}</ThemeText>
-        <ThemeText style={styles.itemPrice}>{priceFormatter(product.withGstPrice)}</ThemeText>
+    <TouchableWithoutFeedback
+      onPress={() => {
+        router.push(`/(external-routes)/product-details/${product._id}`);
+      }}
+    >
+      <View style={styles.container}>
+        <Image
+          style={styles.imageStyle}
+          source={imageValidator(product.thumbnail.path)}
+        />
+        <View>
+          <ThemeText style={styles.itemName}>{product.itemName}</ThemeText>
+          <ThemeText style={styles.itemPrice}>
+            {priceFormatter(product.withGstPrice)}
+          </ThemeText>
+        </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 
