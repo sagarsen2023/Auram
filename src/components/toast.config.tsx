@@ -1,9 +1,8 @@
 import React from "react";
-import { ViewStyle, Platform } from "react-native";
+import { Platform } from "react-native";
 import {
   BaseToast,
   ErrorToast,
-  SuccessToast,
   ToastShowParams,
 } from "react-native-toast-message";
 import { useThemeColor } from "../constants/theme";
