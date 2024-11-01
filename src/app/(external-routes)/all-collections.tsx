@@ -9,8 +9,6 @@ import Toast from "react-native-toast-message";
 import CollectionCardLister from "@/src/components/card-listers/collection-card-lister.component";
 import PageIndicator from "@/src/components/page-indicator.component";
 
-// TODO: Add a not found message
-
 const AllCollections = () => {
   const COLORS = useThemeColor();
   const [collections, setCollections] = useState<CollectionItem[]>([]);
@@ -48,9 +46,7 @@ const AllCollections = () => {
         <PageIndicator />
       ) : (
         <ScrollView contentContainerStyle={styles.scrollView}>
-          {collections?.length !== 0 ? (
-            <CollectionCardLister collections={collections} />
-          ) : null}
+          <CollectionCardLister collections={collections} />
         </ScrollView>
       )}
     </View>
