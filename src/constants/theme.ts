@@ -1,7 +1,6 @@
-import { useColorScheme } from "react-native";
+import { useColorScheme, LogBox } from "react-native";
 
 // ? Reason is not found.
-import { LogBox } from 'react-native';
 // ! Ignore log notification by message:
 // LogBox.ignoreLogs(['Warning: ...']);
 LogBox.ignoreLogs(['Sending `appearanceChanged` with no listeners registered.']);

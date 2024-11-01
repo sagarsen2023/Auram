@@ -1,4 +1,9 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  View,
+  // TouchableWithoutFeedback,
+} from "react-native";
 import React from "react";
 import { SIZES, useThemeColor } from "@/src/constants/theme";
 import imageValidator from "@/src/utils/imageValidator";
