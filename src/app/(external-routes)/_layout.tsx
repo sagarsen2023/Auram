@@ -1,19 +1,25 @@
 import React from "react";
 import { Stack } from "expo-router";
+import { useThemeColor } from "@/src/constants/theme";
+import SecondaryBackButton from "@/src/components/buttons/secondary-back-button.component";
 
 const _layout = () => {
+  const COLORS = useThemeColor();
   return (
-    <Stack>
+    <Stack
+      screenOptions={{
+        animation: "slide_from_right",
+        headerShadowVisible: false,
+        headerStyle: {
+          backgroundColor: COLORS.secondary,
+        },
+      }}
+    >
       <Stack.Screen
         name="all-collections"
         options={{
-          animation: "slide_from_right",
-          headerShown: true,
           title: "All Collections",
-          headerShadowVisible: false,
-          headerStyle: {
-            backgroundColor: "transparent",
-          },
+          headerLeft: () => <SecondaryBackButton />,
         }}
       />
     </Stack>
