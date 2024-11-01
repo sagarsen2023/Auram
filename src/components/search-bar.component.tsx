@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: SIZES.marginOrPadding.medium,
     borderRadius: SIZES.borderRadius.medium,
     borderWidth: 1,
-    height: "100%",
+    height: 40,
     fontSize: SIZES.fontSize.xLarge,
   },
   searchButton: {
