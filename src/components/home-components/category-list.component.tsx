@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   textContainer: {
+    backgroundColor: "transparent",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
