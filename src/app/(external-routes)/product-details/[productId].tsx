@@ -9,6 +9,7 @@ import { SIZES, useThemeColor } from "@/src/constants/theme";
 import ThemeText from "@/src/components/theme-text.component";
 import WishListButton from "@/src/components/buttons/wishlist-button.component";
 import { WebView } from "react-native-webview";
+import htmlContentGenerator from "@/src/utils/htmlContentGenerator";
 
 const ProductDetails = () => {
   const COLORS = useThemeColor();
@@ -181,8 +182,14 @@ const ProductDetails = () => {
             <ThemeText>Product Details</ThemeText>
             {/* <ThemeText>{sampleData.itemDescription}</ThemeText> */}
             <WebView
+              style={{
+                height: 150,
+              }}
+              originWhitelist={["*"]}
               source={{
-                html: sampleData.itemDescription,
+                html: htmlContentGenerator({
+                  htmlContent: sampleData.itemDescription,
+                }),
               }}
             />
           </View>
