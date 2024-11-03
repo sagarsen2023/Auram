@@ -1,24 +1,31 @@
-import {
-  FlatList,
-  StyleSheet,
-  TouchableWithoutFeedback,
-  View,
-} from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import React from "react";
 import { CategoryItem } from "@/src/models/categories-and-items/category.model";
 import CategoryRoundedCard from "../cards/category-rounded-card.component";
 import ThemeText from "../theme-text.component";
 import { SIZES, useThemeColor } from "@/src/constants/theme";
 import { Link } from "expo-router";
-
-// TODO: Implement onPress for category
+import CategoryRoundedCardLoader from "../shimmer-loaders/category-rounded-card-loader.component";
 
 const CategoryList = ({
   categories,
+  loading,
+  loaderCount,
 }: {
-  categories: CategoryItem[] | null;
+  categories?: CategoryItem[];
+  loading: boolean;
+  loaderCount: number;
 }) => {
   const COLORS = useThemeColor();
+  if (loading) {
+    return (
+      <View style={styles.loaderContainer}>
+        {Array.from({ length: loaderCount }).map((_, index) => (
+          <CategoryRoundedCardLoader key={index} />
+        ))}
+      </View>
+    );
+  }
   return (
     <View>
       {categories && (
@@ -40,15 +47,7 @@ const CategoryList = ({
           <FlatList
             data={categories}
             keyExtractor={(item) => item._id}
-            renderItem={(item) => (
-              <TouchableWithoutFeedback
-                onPress={() => {
-                  console.log("Category Clicked");
-                }}
-              >
-                <CategoryRoundedCard category={item.item} />
-              </TouchableWithoutFeedback>
-            )}
+            renderItem={(item) => <CategoryRoundedCard category={item.item} />}
             horizontal
             showsHorizontalScrollIndicator={false}
           />
@@ -61,6 +60,10 @@ const CategoryList = ({
 export default CategoryList;
 
 const styles = StyleSheet.create({
+  loaderContainer: {
+    flexDirection: "row",
+    marginVertical: SIZES.marginOrPadding.default,
+  },
   container: {
     marginVertical: SIZES.marginOrPadding.default,
   },
