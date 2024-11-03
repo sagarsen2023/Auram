@@ -14,6 +14,7 @@ import htmlContentGenerator, {
 } from "@/src/utils/htmlContentGenerator";
 import priceFormatter from "@/src/utils/priceFormatter";
 import Badge from "@/src/components/badge.component";
+import StoneDetailsCardLister from "@/src/components/card-listers/stone-details-card-lister.component";
 
 const ProductDetails = () => {
   const COLORS = useThemeColor();
@@ -95,14 +96,14 @@ const ProductDetails = () => {
         type: "diamond",
         weight: ".60",
         amount: 54000,
-        description: "<p>diamond clarity vs/ e-f/ exel cut</p>\n",
+        description: "<p>diamond clarity vs/ e-f/ exel cut</p>",
       },
       {
         _id: "670f3a9752ed2a4d077569ed",
         type: "others",
         weight: "2",
         amount: 5400,
-        description: "<p>fdfdfdfd</p>\n",
+        description: "<p>fdfdfdfd</p>",
       },
     ],
     collections: [
@@ -226,26 +227,30 @@ const ProductDetails = () => {
                 onMessage={handleWebViewMessage}
                 javaScriptEnabled
               />
-              <View style={styles.purityAndMakingChargeContainer}>
-                {!!sampleData.makingCharge && (
-                  <ThemeText
-                    type="Primary"
-                    fontWeight={"500"}
-                    size={SIZES.fontSize.medium}
-                  >
-                    Making Charge: {priceFormatter(sampleData.makingCharge)}
-                  </ThemeText>
-                )}
-                {!!sampleData.goldPurity && (
-                  <Badge>
-                    <ThemeText style={styles.badgeText}>
-                      Gold Purity: {sampleData.goldPurity}K
-                    </ThemeText>
-                  </Badge>
-                )}
-              </View>
             </View>
           )}
+          {/* Making charges and gold purity */}
+          <View style={styles.purityAndMakingChargeContainer}>
+            {!!sampleData.makingCharge && (
+              <ThemeText
+                type="Primary"
+                fontWeight={"500"}
+                size={SIZES.fontSize.medium}
+              >
+                Making Charge: {priceFormatter(sampleData.makingCharge)}
+              </ThemeText>
+            )}
+            {!!sampleData.goldPurity && (
+              <Badge>
+                <ThemeText style={styles.badgeText}>
+                  Gold Purity: {sampleData.goldPurity}K
+                </ThemeText>
+              </Badge>
+            )}
+          </View>
+
+          {/* Stone details */}
+          <StoneDetailsCardLister stoneDetailsList={sampleData.stoneDetails} />
         </View>
       </ScrollView>
 
@@ -305,6 +310,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: SIZES.marginOrPadding.default,
     marginTop: -SIZES.marginOrPadding.medium,
+    paddingBottom: 120,
   },
   itemName: {
     fontSize: SIZES.fontSize.large,
@@ -312,9 +318,10 @@ const styles = StyleSheet.create({
     marginVertical: SIZES.marginOrPadding.medium,
   },
   subHeaderText: {
-    fontSize: SIZES.fontSize.medium,
+    fontSize: SIZES.fontSize.large,
     fontWeight: "bold",
-    marginVertical: SIZES.marginOrPadding.small,
+    marginTop: SIZES.marginOrPadding.medium,
+    marginBottom: SIZES.marginOrPadding.small,
   },
   badgeText: {
     color: "white",
