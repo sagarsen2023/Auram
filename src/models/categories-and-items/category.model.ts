@@ -4,7 +4,7 @@ import MediaResponse from "../media.model";
 export interface CategoryItem {
   _id: string;
   title: string;
-  media: MediaResponse;
+  media?: MediaResponse;
   status: boolean;
   createdBy: string;
   updatedBy: string;

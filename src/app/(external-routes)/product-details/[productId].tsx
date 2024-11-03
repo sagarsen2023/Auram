@@ -107,14 +107,11 @@ const ProductDetails = () => {
     ],
     collections: [
       {
-        media: ["6678764a16bbcf7a02441988"],
         textColor: "black",
         status: true,
         _id: "6678765d16bbcf7a02441990",
         title: "LIFE STYLE",
         description: "<p>LIFE STYLE</p>\n",
-        verticalImage: "670f1c4952ed2a4d07756754",
-        horizontalImage: "6678764d16bbcf7a0244198c",
         slug: "life-style",
         colorCode: "#ede5f3",
         createdBy: "65f85e8cfe496281d5a43755",
@@ -168,7 +165,7 @@ const ProductDetails = () => {
         {/* Top Image Part */}
         <View style={styles.imageContainer}>
           <Image
-            source={imageValidator(sampleData.thumbnail.path)}
+            source={imageValidator(sampleData.thumbnail?.path)}
             style={styles.imageStyle}
           />
           {/* Rounded Part */}
@@ -185,65 +182,70 @@ const ProductDetails = () => {
         {/* Product Details Part */}
         <View style={[styles.descriptionContainer]}>
           <ThemeText size={SIZES.fontSize.small}>
-            {sampleData.itemCategory.title}
+            {sampleData.itemCategory?.title}
           </ThemeText>
+
           <ThemeText style={styles.itemName}>{sampleData.itemName}</ThemeText>
-
-          <View>
-            <ThemeText style={styles.subHeaderText}>Product Details</ThemeText>
-            <WebView
-              style={{ height: webViewHeight + 20 }}
-              originWhitelist={["*"]}
-              source={{
-                html: htmlContentGenerator({
-                  htmlContent: sampleData.itemDescription,
-                  fontSizeInPx: SIZES.fontSize.small,
-                  backgroundColor: COLORS.secondary,
-                  textColor: COLORS.text,
-                }),
-              }}
-              onMessage={handleWebViewMessage}
-              javaScriptEnabled
-            />
-          </View>
-
-          <View>
-            <ThemeText style={styles.subHeaderText}>
-              Product Specifications
-            </ThemeText>
-            <WebView
-              style={{ height: webViewHeight }}
-              originWhitelist={["*"]}
-              source={{
-                html: htmlContentGenerator({
-                  htmlContent: sampleData.itemSpecification,
-                  fontSizeInPx: SIZES.fontSize.small,
-                  backgroundColor: COLORS.secondary,
-                  textColor: COLORS.text,
-                }),
-              }}
-              onMessage={handleWebViewMessage}
-              javaScriptEnabled
-            />
-            <View style={styles.purityAndMakingChargeContainer}>
-              {!!sampleData.makingCharge && (
-                <ThemeText
-                  type="Primary"
-                  fontWeight={"500"}
-                  size={SIZES.fontSize.medium}
-                >
-                  Making Charge: {priceFormatter(sampleData.makingCharge)}
-                </ThemeText>
-              )}
-              {!!sampleData.goldPurity && (
-                <Badge>
-                  <ThemeText style={styles.badgeText}>
-                    Gold Purity: {sampleData.goldPurity}K
-                  </ThemeText>
-                </Badge>
-              )}
+          {sampleData.itemDescription && (
+            <View>
+              <ThemeText style={styles.subHeaderText}>
+                Product Details
+              </ThemeText>
+              <WebView
+                style={{ height: webViewHeight + 20 }}
+                originWhitelist={["*"]}
+                source={{
+                  html: htmlContentGenerator({
+                    htmlContent: sampleData.itemDescription,
+                    fontSizeInPx: SIZES.fontSize.small,
+                    backgroundColor: COLORS.secondary,
+                    textColor: COLORS.text,
+                  }),
+                }}
+                onMessage={handleWebViewMessage}
+                javaScriptEnabled
+              />
             </View>
-          </View>
+          )}
+          {sampleData.itemSpecification && (
+            <View>
+              <ThemeText style={styles.subHeaderText}>
+                Product Specifications
+              </ThemeText>
+              <WebView
+                style={{ height: webViewHeight }}
+                originWhitelist={["*"]}
+                source={{
+                  html: htmlContentGenerator({
+                    htmlContent: sampleData.itemSpecification,
+                    fontSizeInPx: SIZES.fontSize.small,
+                    backgroundColor: COLORS.secondary,
+                    textColor: COLORS.text,
+                  }),
+                }}
+                onMessage={handleWebViewMessage}
+                javaScriptEnabled
+              />
+              <View style={styles.purityAndMakingChargeContainer}>
+                {!!sampleData.makingCharge && (
+                  <ThemeText
+                    type="Primary"
+                    fontWeight={"500"}
+                    size={SIZES.fontSize.medium}
+                  >
+                    Making Charge: {priceFormatter(sampleData.makingCharge)}
+                  </ThemeText>
+                )}
+                {!!sampleData.goldPurity && (
+                  <Badge>
+                    <ThemeText style={styles.badgeText}>
+                      Gold Purity: {sampleData.goldPurity}K
+                    </ThemeText>
+                  </Badge>
+                )}
+              </View>
+            </View>
+          )}
         </View>
       </ScrollView>
 

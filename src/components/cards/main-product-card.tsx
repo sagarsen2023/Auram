@@ -12,12 +12,9 @@ import ThemeText from "../theme-text.component";
 import priceFormatter from "@/src/utils/priceFormatter";
 import { router } from "expo-router";
 
-// TODO: Add a fallback image for the product
-
 const MainProductCard = ({ product }: { product: Product }) => {
-  const image = product.thumbnail
-    ? imageValidator(product.thumbnail.path)
-    : null;
+  const image = imageValidator(product.thumbnail?.path)
+
   return (
     <TouchableWithoutFeedback
       onPress={() => {
@@ -29,7 +26,7 @@ const MainProductCard = ({ product }: { product: Product }) => {
           <Image
             style={styles.imageStyle}
             source={image}
-            resizeMode="contain"
+            resizeMode="cover"
           />
         )}
         <View>
@@ -49,9 +46,12 @@ const styles = StyleSheet.create({
   container: {
     width: "48%",
     marginBottom: SIZES.marginOrPadding.default,
+    overflow: "hidden",
+    borderRadius: SIZES.borderRadius.default,
   },
   imageStyle: {
     width: "100%",
+    height: "auto",
     aspectRatio: 1,
     borderRadius: SIZES.borderRadius.default,
   },

@@ -16,7 +16,7 @@ const CollectionCard = ({ collection }: { collection: CollectionItem }) => {
     <View style={styles.cardWrapper}>
       <Image
         style={styles.imageStyle}
-        source={imageValidator(collection.horizontalImage.path)}
+        source={imageValidator(collection.horizontalImage?.path)}
         resizeMode="cover"
       />
       <View

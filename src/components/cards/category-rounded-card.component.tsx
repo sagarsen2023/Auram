@@ -32,7 +32,7 @@ const CategoryRoundedCard = ({ category }: { category: CategoryItem }) => {
         >
           <Image
             style={styles.imageStyles}
-            source={imageValidator(category.media.path)}
+            source={imageValidator(category.media?.path)}
             resizeMode="cover"
           />
         </View>
