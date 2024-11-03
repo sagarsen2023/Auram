@@ -39,8 +39,7 @@ const _layout = () => {
         name="product-details/[productId]"
         options={{
           title: "Product Details",
-          headerTitleAlign: "center",
-          headerLeft: () => <SecondaryBackButton />,
+         headerShown: false,
         }}
       />
         <Stack.Screen
