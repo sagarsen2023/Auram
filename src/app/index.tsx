@@ -2,8 +2,10 @@ import { ActivityIndicator, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { getUserName } from "../hooks/username";
 import { router } from "expo-router";
+import { useThemeColor } from "../constants/theme";
 
 const index = () => {
+  const COLORS = useThemeColor();
   const [_, setIsLogged] = useState(false);
   useEffect(() => {
     getUserName().then((token) => {
@@ -22,9 +24,10 @@ const index = () => {
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
+        backgroundColor: COLORS.secondary,
       }}
     >
-      <ActivityIndicator />
+      <ActivityIndicator color={COLORS.primary} />
     </View>
   );
 };
