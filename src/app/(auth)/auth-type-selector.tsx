@@ -6,13 +6,12 @@ import ThemeText from "@/src/components/theme-text.component";
 import ThemeTextInput from "@/src/components/forms-inputs/theme-text-input.component";
 import PrimaryRoundedButton from "@/src/components/buttons/primary-rounded-button.component";
 import OrSeparator from "@/src/components/or-separator";
-import { Link } from "expo-router";
-import { router } from "expo-router";
+import { Link ,router} from "expo-router";
 import { setUserName } from "@/src/hooks/username";
 
 const AuthTypeSelector = () => {
   const COLORS = useThemeColor();
-  const [currentUsername, setCurrentUserName] = useState("");
+  const [currentUsername, setCurrentUsername] = useState("");
 
   const saveUsername = () => {
     if (currentUsername) {
@@ -51,13 +50,13 @@ const AuthTypeSelector = () => {
 
             <ThemeTextInput
               label="May we know your name?"
-              onChange={(e) => setCurrentUserName(e)}
+              onChange={(e) => setCurrentUsername(e)}
               placeHolder="Enter your name"
             />
 
             <View style={styles.buttonContainer}>
               <Link href={"/(home)/"} replace>
-                <ThemeText style={{ color: COLORS.primary }}>
+                <ThemeText type="Primary">
                   I'll do it later
                 </ThemeText>
               </Link>
