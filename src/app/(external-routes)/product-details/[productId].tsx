@@ -8,12 +8,20 @@ import SecondaryBackButton from "@/src/components/buttons/secondary-back-button.
 import { SIZES, useThemeColor } from "@/src/constants/theme";
 import ThemeText from "@/src/components/theme-text.component";
 import WishListButton from "@/src/components/buttons/wishlist-button.component";
-import { WebView } from "react-native-webview";
-import htmlContentGenerator from "@/src/utils/htmlContentGenerator";
+import { WebView, WebViewMessageEvent } from "react-native-webview";
+import htmlContentGenerator, {
+  useWebViewHeight,
+} from "@/src/utils/htmlContentGenerator";
+import priceFormatter from "@/src/utils/priceFormatter";
+import Badge from "@/src/components/badge.component";
 
 const ProductDetails = () => {
   const COLORS = useThemeColor();
   const { productId } = useLocalSearchParams();
+  const [webViewHeight, handleWebViewMessage] = useWebViewHeight() as [
+    number,
+    (event: WebViewMessageEvent) => void
+  ];
   console.log(productId);
 
   const sampleData: Product = {
@@ -24,7 +32,7 @@ const ProductDetails = () => {
     itemCategory: {
       status: false,
       _id: "6615a3211ff46d588eca9efb",
-      title: "category 7",
+      title: "Rings",
       media: {
         _id: "670f3a7a52ed2a4d077569b9",
         originalname: "wedding.png",
@@ -148,11 +156,14 @@ const ProductDetails = () => {
         },
       ]}
     >
+      {/* Top Navigation Part */}
       <View style={styles.topNavigationContainer}>
         <SecondaryBackButton style={styles.buttonStyle} />
         <ThemeText style={styles.headerText}>Product Details</ThemeText>
         <WishListButton style={styles.buttonStyle} />
       </View>
+
+      {/* Product Details Part */}
       <ScrollView contentContainerStyle={styles.scrollView}>
         {/* Top Image Part */}
         <View style={styles.imageContainer}>
@@ -179,22 +190,61 @@ const ProductDetails = () => {
           <ThemeText style={styles.itemName}>{sampleData.itemName}</ThemeText>
 
           <View>
-            <ThemeText>Product Details</ThemeText>
-            {/* <ThemeText>{sampleData.itemDescription}</ThemeText> */}
+            <ThemeText style={styles.subHeaderText}>Product Details</ThemeText>
             <WebView
-              style={{
-                height: 150,
-              }}
+              style={{ height: webViewHeight + 10 }}
               originWhitelist={["*"]}
               source={{
                 html: htmlContentGenerator({
                   htmlContent: sampleData.itemDescription,
+                  fontSizeInPx: SIZES.fontSize.small,
+                  backgroundColor: COLORS.secondary,
+                  textColor: COLORS.text,
                 }),
               }}
+              onMessage={handleWebViewMessage}
+              javaScriptEnabled
             />
+          </View>
+
+          <View>
+            <ThemeText style={styles.subHeaderText}>
+              Product Specifications
+            </ThemeText>
+            <WebView
+              style={{ height: webViewHeight }}
+              originWhitelist={["*"]}
+              source={{
+                html: htmlContentGenerator({
+                  htmlContent: sampleData.itemSpecification,
+                  fontSizeInPx: SIZES.fontSize.small,
+                  backgroundColor: COLORS.secondary,
+                  textColor: COLORS.text,
+                }),
+              }}
+              onMessage={handleWebViewMessage}
+              javaScriptEnabled
+            />
+            {!!sampleData.makingCharge && (
+              <ThemeText
+                type="Primary"
+                fontWeight={"500"}
+                size={SIZES.fontSize.medium}
+              >
+                Making Charge: {priceFormatter(sampleData.makingCharge)}
+                <Badge>
+                  <ThemeText style={styles.badgeText}>
+                    Gold Purity: {sampleData.goldPurity}K
+                  </ThemeText>
+                </Badge>
+              </ThemeText>
+            )}
           </View>
         </View>
       </ScrollView>
+
+      {/* Bottom Add to Cart part */}
+
       <StatusBar animated style="auto" />
     </View>
   );
@@ -227,7 +277,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     position: "absolute",
-    top: Platform.OS === "ios" ? 10 : 0,
+    top: Platform.OS === "ios" ? SIZES.marginOrPadding.default : 0,
     left: 0,
     right: 0,
     zIndex: 100,
@@ -254,5 +304,13 @@ const styles = StyleSheet.create({
     fontSize: SIZES.fontSize.large,
     fontWeight: "700",
     marginVertical: SIZES.marginOrPadding.medium,
+  },
+  subHeaderText: {
+    fontSize: SIZES.fontSize.medium,
+    fontWeight: "bold",
+    marginVertical: SIZES.marginOrPadding.small,
+  },
+  badgeText: {
+    color: "white",
   },
 });
