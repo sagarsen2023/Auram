@@ -12,7 +12,12 @@ import ThemeText from "../theme-text.component";
 import priceFormatter from "@/src/utils/priceFormatter";
 import { router } from "expo-router";
 
+// TODO: Add a fallback image for the product
+
 const MainProductCard = ({ product }: { product: Product }) => {
+  const image = product.thumbnail
+    ? imageValidator(product.thumbnail.path)
+    : null;
   return (
     <TouchableWithoutFeedback
       onPress={() => {
@@ -20,14 +25,17 @@ const MainProductCard = ({ product }: { product: Product }) => {
       }}
     >
       <View style={styles.container}>
-        <Image
-          style={styles.imageStyle}
-          source={imageValidator(product.thumbnail.path)}
-        />
+        {image && (
+          <Image
+            style={styles.imageStyle}
+            source={image}
+            resizeMode="contain"
+          />
+        )}
         <View>
           <ThemeText style={styles.itemName}>{product.itemName}</ThemeText>
           <ThemeText style={styles.itemPrice}>
-            {priceFormatter(product.withGstPrice)}
+            {priceFormatter(product?.withGstPrice)}
           </ThemeText>
         </View>
       </View>
