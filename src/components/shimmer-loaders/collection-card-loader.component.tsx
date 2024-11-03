@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { SIZES, useThemeColor } from "@/src/constants/theme";
-import { ShimmerContainer } from "./shimmer-effect-container.component";
+import { ShimmerContainer } from "./config/shimmer-effect-container.component";
 
 const CollectionCardLoader = () => {
   const COLORS = useThemeColor();

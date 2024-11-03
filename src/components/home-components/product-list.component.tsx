@@ -5,7 +5,7 @@ import MainProductCard from "../cards/main-product-card";
 import ThemeText from "../theme-text.component";
 import { SIZES } from "@/src/constants/theme";
 import MainProductCardLoader from "../shimmer-loaders/main-product-card-loader.component";
-import { ShimmerContainer } from "../shimmer-loaders/shimmer-effect-container.component";
+import { ShimmerContainer } from "../shimmer-loaders/config/shimmer-effect-container.component";
 
 const ProductList = ({
   title,
