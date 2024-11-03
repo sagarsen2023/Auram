@@ -1,12 +1,5 @@
-import {
-  ScrollView,
-  StyleSheet,
-  Image,
-  View,
-  Platform,
-  Animated,
-} from "react-native";
-import React, { useEffect, useRef, useState } from "react";
+import { StyleSheet, Image, View, Platform, Animated } from "react-native";
+import React, { useEffect, useRef } from "react";
 import { useLocalSearchParams } from "expo-router";
 import { Product } from "@/src/models/categories-and-items/item.model.ts";
 import imageValidator from "@/src/utils/imageValidator";
@@ -22,6 +15,8 @@ import htmlContentGenerator, {
 import priceFormatter from "@/src/utils/priceFormatter";
 import Badge from "@/src/components/badge.component";
 import StoneDetailsCardLister from "@/src/components/card-listers/stone-details-card-lister.component";
+import PrimaryRoundedButton from "@/src/components/buttons/primary-rounded-button.component";
+import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 
 const ProductDetails = () => {
   const COLORS = useThemeColor();
@@ -37,7 +32,7 @@ const ProductDetails = () => {
     scrollY.addListener(({ value }) => {
       Animated.timing(backgroundColorAnim, {
         toValue: value > 50 ? 1 : 0,
-        duration: 500,
+        duration: 100,
         useNativeDriver: false,
       }).start();
     });
@@ -301,6 +296,55 @@ const ProductDetails = () => {
       </Animated.ScrollView>
 
       {/* Bottom Add to Cart part */}
+      <View
+        style={[
+          styles.addToCartContainer,
+          {
+            backgroundColor: COLORS.secondary,
+            borderTopColor: COLORS.text,
+            shadowColor: COLORS.text,
+          },
+        ]}
+      >
+        
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: SIZES.marginOrPadding.xLarge,
+          }}
+        >
+          <View
+            style={{
+              gap: SIZES.marginOrPadding.xSmall,
+            }}
+          >
+            <ThemeText size={SIZES.fontSize.medium}>Final Price</ThemeText>
+            <ThemeText size={SIZES.fontSize.large} fontWeight={"bold"}>
+              {priceFormatter(sampleData.finalPrice)}
+            </ThemeText>
+          </View>
+
+          <PrimaryRoundedButton
+            buttonStyle={{
+              flexDirection: "row",
+              paddingHorizontal: SIZES.marginOrPadding.xLarge,
+            }}
+          >
+            <FontAwesome6 name="bag-shopping" size={24} color="white" />
+            <ThemeText
+            size={SIZES.fontSize.xLarge}
+              style={{
+                color: "white",
+                marginLeft: SIZES.marginOrPadding.small
+              }}
+            >
+              Add to Cart
+            </ThemeText>
+          </PrimaryRoundedButton>
+        </View>
+      </View>
 
       <StatusBar animated style="auto" />
     </View>
@@ -334,11 +378,10 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     position: "absolute",
-    top: Platform.OS === "ios" ? SIZES.marginOrPadding.default : 0,
     left: 0,
     right: 0,
     zIndex: 100,
-    paddingTop: 40,
+    paddingTop: Platform.OS === "ios" ? 60 : 40,
     paddingHorizontal: SIZES.marginOrPadding.default,
     paddingBottom: SIZES.marginOrPadding.medium,
   },
@@ -383,5 +426,22 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     marginVertical: SIZES.marginOrPadding.medium,
+  },
+  addToCartContainer: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    paddingTop: SIZES.marginOrPadding.default,
+    paddingHorizontal: SIZES.marginOrPadding.xLarge,
+    paddingBottom: Platform.OS === "ios" ? 30 : 15,
+    borderTopLeftRadius: 50,
+    borderTopRightRadius: 50,
+    borderWidth: Platform.OS === "ios" ? 0 : 0.4,
+    shadowOffset: { width: 0, height: -5 },
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+    elevation: 5,
+    zIndex: 100,
   },
 });
