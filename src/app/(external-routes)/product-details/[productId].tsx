@@ -8,6 +8,7 @@ import SecondaryBackButton from "@/src/components/buttons/secondary-back-button.
 import { SIZES, useThemeColor } from "@/src/constants/theme";
 import ThemeText from "@/src/components/theme-text.component";
 import WishListButton from "@/src/components/buttons/wishlist-button.component";
+import { WebView } from "react-native-webview";
 
 const ProductDetails = () => {
   const COLORS = useThemeColor();
@@ -178,7 +179,12 @@ const ProductDetails = () => {
 
           <View>
             <ThemeText>Product Details</ThemeText>
-            <ThemeText>{sampleData.itemDescription}</ThemeText>
+            {/* <ThemeText>{sampleData.itemDescription}</ThemeText> */}
+            <WebView
+              source={{
+                html: sampleData.itemDescription,
+              }}
+            />
           </View>
         </View>
       </ScrollView>
