@@ -1,5 +1,12 @@
-import { ScrollView, StyleSheet, Image, View, Platform } from "react-native";
-import React from "react";
+import {
+  ScrollView,
+  StyleSheet,
+  Image,
+  View,
+  Platform,
+  Animated,
+} from "react-native";
+import React, { useEffect, useRef, useState } from "react";
 import { useLocalSearchParams } from "expo-router";
 import { Product } from "@/src/models/categories-and-items/item.model.ts";
 import imageValidator from "@/src/utils/imageValidator";
@@ -23,7 +30,27 @@ const ProductDetails = () => {
     number,
     (event: WebViewMessageEvent) => void
   ];
+  const scrollY = useRef(new Animated.Value(0)).current;
+  const backgroundColorAnim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    scrollY.addListener(({ value }) => {
+      Animated.timing(backgroundColorAnim, {
+        toValue: value > 50 ? 1 : 0,
+        duration: 500,
+        useNativeDriver: false,
+      }).start();
+    });
+    return () => scrollY.removeAllListeners();
+  }, []);
+
+  // ! Remove this line
   console.log(productId);
+
+  const backgroundColor = backgroundColorAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: ["transparent", COLORS.secondary],
+  });
 
   const sampleData: Product = {
     _id: "66a5127b25a35d1aecd66801",
@@ -155,14 +182,23 @@ const ProductDetails = () => {
       ]}
     >
       {/* Top Navigation Part */}
-      <View style={styles.topNavigationContainer}>
+      <Animated.View
+        style={[styles.topNavigationContainer, { backgroundColor }]}
+      >
         <SecondaryBackButton style={styles.buttonStyle} />
         <ThemeText style={styles.headerText}>Product Details</ThemeText>
         <WishListButton style={styles.buttonStyle} />
-      </View>
+      </Animated.View>
 
       {/* Product Details Part */}
-      <ScrollView contentContainerStyle={styles.scrollView}>
+      <Animated.ScrollView
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+          { useNativeDriver: false }
+        )}
+        scrollEventThrottle={20}
+        contentContainerStyle={styles.scrollView}
+      >
         {/* Top Image Part */}
         <View style={styles.imageContainer}>
           <Image
@@ -186,7 +222,17 @@ const ProductDetails = () => {
             {sampleData.itemCategory?.title}
           </ThemeText>
 
-          <ThemeText style={styles.itemName}>{sampleData.itemName}</ThemeText>
+          <View style={styles.itemNameContainer}>
+            <ThemeText style={styles.itemName}>{sampleData.itemName}</ThemeText>
+            {sampleData.gender && (
+              <Badge>
+                <ThemeText style={styles.badgeText}>
+                  {sampleData.gender.toLocaleUpperCase()}
+                </ThemeText>
+              </Badge>
+            )}
+          </View>
+
           {sampleData.itemDescription && (
             <View>
               <ThemeText style={styles.subHeaderText}>
@@ -252,7 +298,7 @@ const ProductDetails = () => {
           {/* Stone details */}
           <StoneDetailsCardLister stoneDetailsList={sampleData.stoneDetails} />
         </View>
-      </ScrollView>
+      </Animated.ScrollView>
 
       {/* Bottom Add to Cart part */}
 
@@ -293,7 +339,8 @@ const styles = StyleSheet.create({
     right: 0,
     zIndex: 100,
     paddingTop: 40,
-    marginHorizontal: SIZES.marginOrPadding.default,
+    paddingHorizontal: SIZES.marginOrPadding.default,
+    paddingBottom: SIZES.marginOrPadding.medium,
   },
   scrollView: {
     flexGrow: 1,
@@ -312,14 +359,19 @@ const styles = StyleSheet.create({
     marginTop: -SIZES.marginOrPadding.medium,
     paddingBottom: 120,
   },
+  itemNameContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: SIZES.marginOrPadding.medium,
+  },
   itemName: {
-    fontSize: SIZES.fontSize.large,
-    fontWeight: "700",
-    marginVertical: SIZES.marginOrPadding.medium,
+    fontSize: SIZES.fontSize.xLarge,
+    fontWeight: "bold",
   },
   subHeaderText: {
     fontSize: SIZES.fontSize.large,
-    fontWeight: "bold",
+    fontWeight: "600",
     marginTop: SIZES.marginOrPadding.medium,
     marginBottom: SIZES.marginOrPadding.small,
   },
