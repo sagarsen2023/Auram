@@ -26,6 +26,9 @@ const Home = () => {
   const [categoryLoading, setCategoryLoading] = useState(true);
   const [featuredProductsLoading, setFeaturedProductsLoading] = useState(true);
   const [collectionsLoading, setCollectionsLoading] = useState(true);
+  const [latestProductsLoading, setLatestProductsLoading] = useState(true);
+
+  const [refreshing, setRefreshing] = useState(false);
 
   // Data states
   const [bannerData, setBannerData] = useState<BannerData[] | undefined>(
@@ -40,52 +43,63 @@ const Home = () => {
   const [collections, setCollections] = useState<CollectionItem[] | undefined>(
     undefined
   );
+  const [latestProducts, setLatestProducts] = useState<Product[] | null>(null);
+
+  const fetchAllData = async () => {
+    try {
+      // Fetch Banner
+      const bannerResponse = await homeAPI.fetchBanner();
+      if (bannerResponse.status) setBannerData(bannerResponse.data);
+    } catch (error) {
+      console.log("Error fetching banners:", error);
+    } finally {
+      setBannerLoading(false);
+    }
+
+    try {
+      // Fetch Categories
+      const categoryResponse = await categoryAPI.getAllCategories();
+      if (categoryResponse.status) setCategories(categoryResponse.data);
+    } catch (error) {
+      console.log("Error fetching categories:", error);
+    } finally {
+      setCategoryLoading(false);
+    }
+
+    try {
+      // Fetch Featured Products
+      const featuredProductsResponse = await productAPI.getFeaturedProducts();
+      if (featuredProductsResponse.status)
+        setFeaturedProducts(featuredProductsResponse.data);
+    } catch (error) {
+      console.log("Error fetching featured products:", error);
+    } finally {
+      setFeaturedProductsLoading(false);
+    }
+
+    try {
+      // Fetch Collections
+      const collectionResponse = await collectionAPI.getAllCollections();
+      if (collectionResponse.status) setCollections(collectionResponse.data);
+    } catch (error) {
+      console.log("Error fetching collections:", error);
+    } finally {
+      setCollectionsLoading(false);
+    }
+
+    try {
+      // Fetch Latest Products
+      const latestProductsResponse = await productAPI.getLatestProducts();
+      if (latestProductsResponse.status)
+        setLatestProducts(latestProductsResponse.data);
+    } catch (error) {
+      console.log("Error fetching latest products:", error);
+    } finally {
+      setLatestProductsLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchAllData = async () => {
-      try {
-        // Fetch Banner
-        const bannerResponse = await homeAPI.fetchBanner();
-        if (bannerResponse.status) setBannerData(bannerResponse.data);
-      } catch (error) {
-        console.log("Error fetching banners:", error);
-      } finally {
-        setBannerLoading(false);
-      }
-
-      try {
-        // Fetch Categories
-        const categoryResponse = await categoryAPI.getAllCategories();
-        if (categoryResponse.status) setCategories(categoryResponse.data);
-      } catch (error) {
-        console.log("Error fetching categories:", error);
-      } finally {
-        setCategoryLoading(false);
-      }
-
-      try {
-        // Fetch Featured Products
-        const featuredProductsResponse =
-          await productAPI.getFeaturedCollection();
-        if (featuredProductsResponse.status)
-          setFeaturedProducts(featuredProductsResponse.data);
-      } catch (error) {
-        console.log("Error fetching featured products:", error);
-      } finally {
-        setFeaturedProductsLoading(false);
-      }
-
-      try {
-        // Fetch Collections
-        const collectionResponse = await collectionAPI.getAllCollections();
-        if (collectionResponse.status) setCollections(collectionResponse.data);
-      } catch (error) {
-        console.log("Error fetching collections:", error);
-      } finally {
-        setCollectionsLoading(false);
-      }
-    };
-
     fetchAllData();
   }, []);
 
@@ -132,9 +146,9 @@ const Home = () => {
 
           {/* Latest Products */}
           <ProductList
-            loading={featuredProductsLoading}
+            loading={latestProductsLoading}
             title="Latest Products"
-            products={featuredProducts}
+            products={latestProducts?.slice(0, 4) || []}
             loaderCount={4}
           />
 
