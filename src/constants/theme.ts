@@ -13,6 +13,7 @@ export const useThemeColor = () => {
     secondary: colorScheme === "light" ? "white" : "black",
     text: colorScheme === "light" ? "black" : "white",
     borderColor: colorScheme === "light" ? "lightgray" : "#525050",
+    shimmerLoaderColor : colorScheme === "light" ? "#E0E0E0" : "#333",
     success: "green",
     error: "red",
   };
