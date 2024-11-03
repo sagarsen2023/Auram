@@ -13,8 +13,8 @@ export interface CollectionItem {
   slug: string;
   colorCode: string;
   textColor: string;
-  createdBy: UserResponse;
-  updatedBy: UserResponse;
+  createdBy: UserResponse | string;
+  updatedBy: UserResponse | string;
   createdAt: string;
   updatedAt: string;
 }

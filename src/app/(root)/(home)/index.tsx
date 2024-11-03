@@ -11,7 +11,7 @@ import {
   productAPI,
 } from "@/src/services/product.service";
 import CategoryList from "@/src/components/home-components/category-list.component";
-import { Product } from "@/src/models/categories-and-items/featured-item.model.ts";
+import { Product } from "@/src/models/categories-and-items/item.model.ts";
 import ProductList from "@/src/components/home-components/product-list.component";
 import HomeFooter from "@/src/components/home-components/home-footer.component";
 import CollectionList from "@/src/components/home-components/collection-list.component";

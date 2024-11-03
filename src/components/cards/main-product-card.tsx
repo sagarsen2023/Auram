@@ -5,7 +5,7 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import React from "react";
-import { Product } from "@/src/models/categories-and-items/featured-item.model.ts";
+import { Product } from "@/src/models/categories-and-items/item.model.ts";
 import imageValidator from "@/src/utils/imageValidator";
 import { SIZES } from "@/src/constants/theme";
 import ThemeText from "../theme-text.component";

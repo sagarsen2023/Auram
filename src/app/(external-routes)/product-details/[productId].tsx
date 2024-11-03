@@ -1,7 +1,7 @@
 import { ScrollView, StyleSheet, Image, View, Platform } from "react-native";
 import React from "react";
 import { useLocalSearchParams } from "expo-router";
-import { Product } from "@/src/models/categories-and-items/featured-item.model.ts";
+import { Product } from "@/src/models/categories-and-items/item.model.ts";
 import imageValidator from "@/src/utils/imageValidator";
 import { StatusBar } from "expo-status-bar";
 import SecondaryBackButton from "@/src/components/buttons/secondary-back-button.component";
@@ -192,7 +192,7 @@ const ProductDetails = () => {
           <View>
             <ThemeText style={styles.subHeaderText}>Product Details</ThemeText>
             <WebView
-              style={{ height: webViewHeight + 10 }}
+              style={{ height: webViewHeight + 20 }}
               originWhitelist={["*"]}
               source={{
                 html: htmlContentGenerator({
@@ -225,20 +225,24 @@ const ProductDetails = () => {
               onMessage={handleWebViewMessage}
               javaScriptEnabled
             />
-            {!!sampleData.makingCharge && (
-              <ThemeText
-                type="Primary"
-                fontWeight={"500"}
-                size={SIZES.fontSize.medium}
-              >
-                Making Charge: {priceFormatter(sampleData.makingCharge)}
+            <View style={styles.purityAndMakingChargeContainer}>
+              {!!sampleData.makingCharge && (
+                <ThemeText
+                  type="Primary"
+                  fontWeight={"500"}
+                  size={SIZES.fontSize.medium}
+                >
+                  Making Charge: {priceFormatter(sampleData.makingCharge)}
+                </ThemeText>
+              )}
+              {!!sampleData.goldPurity && (
                 <Badge>
                   <ThemeText style={styles.badgeText}>
                     Gold Purity: {sampleData.goldPurity}K
                   </ThemeText>
                 </Badge>
-              </ThemeText>
-            )}
+              )}
+            </View>
           </View>
         </View>
       </ScrollView>
@@ -312,5 +316,11 @@ const styles = StyleSheet.create({
   },
   badgeText: {
     color: "white",
+  },
+  purityAndMakingChargeContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginVertical: SIZES.marginOrPadding.medium,
   },
 });
