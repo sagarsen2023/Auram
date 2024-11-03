@@ -51,8 +51,6 @@ const Home = () => {
     fetchAllData();
   }, []);
 
-  if (isLoading) return <PageIndicator />;
-
   return (
     <View
       style={[
@@ -75,12 +73,12 @@ const Home = () => {
           <CategoryList categories={categories} />
 
           {/* Featured Products */}
-          {featuredProducts && (
-            <ProductList
-              title="Featured Products"
-              products={featuredProducts}
-            />
-          )}
+          <ProductList
+            loading={isLoading}
+            title="Featured Products"
+            products={featuredProducts}
+            loaderCount={4}
+          />
 
           {/* Collections */}
           {collections && (
@@ -88,9 +86,12 @@ const Home = () => {
           )}
 
           {/* Latest Products */}
-          {featuredProducts && (
-            <ProductList title="Latest Products" products={featuredProducts} />
-          )}
+          <ProductList
+            loading={isLoading}
+            title="Latest Products"
+            products={featuredProducts}
+            loaderCount={4}
+          />
 
           {/* Footer */}
           <HomeFooter />
