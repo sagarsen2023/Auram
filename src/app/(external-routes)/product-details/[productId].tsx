@@ -1,8 +1,7 @@
-import { StyleSheet, Image, View, Platform, Animated } from "react-native";
+import { StyleSheet, View, Platform, Animated } from "react-native";
 import React, { useEffect, useRef } from "react";
 import { useLocalSearchParams } from "expo-router";
 import { Product } from "@/src/models/categories-and-items/item.model.ts";
-import imageValidator from "@/src/utils/imageValidator";
 import { StatusBar } from "expo-status-bar";
 import SecondaryBackButton from "@/src/components/buttons/secondary-back-button.component";
 import { SIZES, useThemeColor } from "@/src/constants/theme";
@@ -17,6 +16,7 @@ import Badge from "@/src/components/badge.component";
 import StoneDetailsCardLister from "@/src/components/card-listers/stone-details-card-lister.component";
 import PrimaryRoundedButton from "@/src/components/buttons/primary-rounded-button.component";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
+import ImageContainer from "@/src/components/product-detail-components/image-comtainer.component";
 
 const ProductDetails = () => {
   const COLORS = useThemeColor();
@@ -195,21 +195,10 @@ const ProductDetails = () => {
         contentContainerStyle={styles.scrollView}
       >
         {/* Top Image Part */}
-        <View style={styles.imageContainer}>
-          <Image
-            source={imageValidator(sampleData.thumbnail?.path)}
-            style={styles.imageStyle}
-          />
-          {/* Rounded Part */}
-          <View
-            style={[
-              styles.roundedPart,
-              {
-                backgroundColor: COLORS.secondary,
-              },
-            ]}
-          />
-        </View>
+        <ImageContainer
+          thumbnail={sampleData.thumbnail?.path}
+          allImages={sampleData.itemMedia?.map((item) => item.path)}
+        />
 
         {/* Product Details Part */}
         <View style={[styles.descriptionContainer]}>
@@ -306,7 +295,6 @@ const ProductDetails = () => {
           },
         ]}
       >
-        
         <View
           style={{
             flexDirection: "row",
@@ -334,10 +322,10 @@ const ProductDetails = () => {
           >
             <FontAwesome6 name="bag-shopping" size={24} color="white" />
             <ThemeText
-            size={SIZES.fontSize.xLarge}
+              size={SIZES.fontSize.xLarge}
               style={{
                 color: "white",
-                marginLeft: SIZES.marginOrPadding.small
+                marginLeft: SIZES.marginOrPadding.small,
               }}
             >
               Add to Cart
@@ -354,13 +342,6 @@ const ProductDetails = () => {
 export default ProductDetails;
 
 const styles = StyleSheet.create({
-  imageStyle: {
-    width: "100%",
-    height: 450,
-  },
-  imageContainer: {
-    position: "relative",
-  },
   container: {
     position: "relative",
     flex: 1,
@@ -387,14 +368,6 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     flexGrow: 1,
-  },
-  roundedPart: {
-    position: "absolute",
-    width: "100%",
-    height: SIZES.marginOrPadding.large,
-    borderTopLeftRadius: 60,
-    borderTopRightRadius: 60,
-    bottom: 0,
   },
   descriptionContainer: {
     flex: 1,
