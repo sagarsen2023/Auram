@@ -9,7 +9,7 @@ import ThemeText from "@/src/components/theme-text.component";
 import WishListButton from "@/src/components/buttons/wishlist-button.component";
 import Badge from "@/src/components/badge.component";
 import StoneDetailsCardLister from "@/src/components/card-listers/stone-details-card-lister.component";
-import ImageContainer from "@/src/components/product-detail-components/image-comtainer.component";
+import ImageContainer from "@/src/components/product-detail-components/image-container.component";
 import MakingChargesAndGoldPurity from "@/src/components/product-detail-components/making-charges-and-gold-purity.component";
 import ProductDetailsAndSpecifications from "@/src/components/product-detail-components/product-details-and-specifications.component";
 import AddToCartSection from "@/src/components/product-detail-components/add-to-cart-section.component";
