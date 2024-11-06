@@ -7,14 +7,12 @@ import SecondaryBackButton from "@/src/components/buttons/secondary-back-button.
 import { SIZES, useThemeColor } from "@/src/constants/theme";
 import ThemeText from "@/src/components/theme-text.component";
 import WishListButton from "@/src/components/buttons/wishlist-button.component";
-import priceFormatter from "@/src/utils/priceFormatter";
 import Badge from "@/src/components/badge.component";
 import StoneDetailsCardLister from "@/src/components/card-listers/stone-details-card-lister.component";
-import PrimaryRoundedButton from "@/src/components/buttons/primary-rounded-button.component";
-import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import ImageContainer from "@/src/components/product-detail-components/image-comtainer.component";
 import MakingChargesAndGoldPurity from "@/src/components/product-detail-components/making-charges-and-gold-purity.component";
 import ProductDetailsAndSpecifications from "@/src/components/product-detail-components/product-details-and-specifications.component";
+import AddToCartSection from "@/src/components/product-detail-components/add-to-cart-section.component";
 
 const ProductDetails = () => {
   const COLORS = useThemeColor();
@@ -228,54 +226,7 @@ const ProductDetails = () => {
       </Animated.ScrollView>
 
       {/* Bottom Add to Cart part */}
-      <View
-        style={[
-          styles.addToCartContainer,
-          {
-            backgroundColor: COLORS.secondary,
-            borderTopColor: COLORS.text,
-            shadowColor: COLORS.text,
-          },
-        ]}
-      >
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-            gap: SIZES.marginOrPadding.xLarge,
-          }}
-        >
-          <View
-            style={{
-              gap: SIZES.marginOrPadding.xSmall,
-            }}
-          >
-            <ThemeText size={SIZES.fontSize.medium}>Final Price</ThemeText>
-            <ThemeText size={SIZES.fontSize.large} fontWeight={"bold"}>
-              {priceFormatter(sampleData.finalPrice)}
-            </ThemeText>
-          </View>
-
-          <PrimaryRoundedButton
-            buttonStyle={{
-              flexDirection: "row",
-              paddingHorizontal: SIZES.marginOrPadding.xLarge,
-            }}
-          >
-            <FontAwesome6 name="bag-shopping" size={24} color="white" />
-            <ThemeText
-              size={SIZES.fontSize.xLarge}
-              style={{
-                color: "white",
-                marginLeft: SIZES.marginOrPadding.small,
-              }}
-            >
-              Add to Cart
-            </ThemeText>
-          </PrimaryRoundedButton>
-        </View>
-      </View>
+      <AddToCartSection finalPrice={sampleData.finalPrice} />
 
       <StatusBar animated style="auto" />
     </View>
@@ -336,22 +287,5 @@ const styles = StyleSheet.create({
   },
   badgeText: {
     color: "white",
-  },
-  addToCartContainer: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    paddingTop: SIZES.marginOrPadding.default,
-    paddingHorizontal: SIZES.marginOrPadding.xLarge,
-    paddingBottom: Platform.OS === "ios" ? 30 : 15,
-    borderTopLeftRadius: 50,
-    borderTopRightRadius: 50,
-    borderWidth: Platform.OS === "ios" ? 0 : 0.4,
-    shadowOffset: { width: 0, height: -5 },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-    elevation: 5,
-    zIndex: 100,
   },
 });
