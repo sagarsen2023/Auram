@@ -1,34 +1,48 @@
-import { Image, StyleSheet, View } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  View,
+  TouchableWithoutFeedback,
+} from "react-native";
 import React from "react";
 import { CategoryItem } from "@/src/models/categories-and-items/category.model";
 import { SIZES, useThemeColor } from "@/src/constants/theme";
 import imageValidator from "@/src/utils/imageValidator";
 import ThemeText from "../theme-text.component";
+import { router } from "expo-router";
 
 const CategoryRoundedCard = ({ category }: { category: CategoryItem }) => {
   const COLORS = useThemeColor();
   return (
-    <View style={styles.wrapper}>
-      <View
-        style={[
-          styles.imageContainer,
-          {
-            backgroundColor: COLORS.primaryLite,
-          },
-        ]}
-      >
-        <Image
-          style={styles.imageStyles}
-          source={imageValidator(category.media.path)}
-          resizeMode="cover"
-        />
+    <TouchableWithoutFeedback
+      onPress={() =>
+        router.push(
+          `/(external-routes)/category-based-products/${category._id}`
+        )
+      }
+    >
+      <View style={styles.wrapper}>
+        <View
+          style={[
+            styles.imageContainer,
+            {
+              backgroundColor: COLORS.primaryLite,
+            },
+          ]}
+        >
+          <Image
+            style={styles.imageStyles}
+            source={imageValidator(category.media?.path)}
+            resizeMode="cover"
+          />
+        </View>
+        <ThemeText style={styles.title}>
+          {category.title.length > 10
+            ? `${category.title.slice(0, 10)}...`
+            : category.title}
+        </ThemeText>
       </View>
-      <ThemeText style={styles.title}>
-        {category.title.length > 10
-          ? `${category.title.slice(0, 10)}...`
-          : category.title}
-      </ThemeText>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 

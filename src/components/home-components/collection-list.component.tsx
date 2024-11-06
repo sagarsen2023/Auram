@@ -6,16 +6,31 @@ import ThemeText from "../theme-text.component";
 import SecondaryRoundedButton from "../buttons/secondary-rounded-button.component";
 import { SIZES } from "@/src/constants/theme";
 import { router } from "expo-router";
+import CollectionCardLoader from "../shimmer-loaders/collection-card-loader.component";
 
 // TODO: Implement onPress for CollectionList
 
 const CollectionList = ({
   collections,
   title,
+  loading,
+  loaderCount,
 }: {
   title?: string;
-  collections: CollectionItem[];
+  collections?: CollectionItem[];
+  loading: boolean;
+  loaderCount: number;
 }) => {
+  if (loading) {
+    return (
+      <View style={styles.collectionCardWrapper}>
+        {Array.from({ length: loaderCount }).map((_, index) => (
+          <CollectionCardLoader key={index} />
+        ))}
+      </View>
+    );
+  }
+  if (!collections) return null;
   const selectedCollections = collections.slice(0, 4);
   return (
     <View style={styles.container}>

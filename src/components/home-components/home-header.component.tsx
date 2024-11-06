@@ -1,10 +1,10 @@
-import { StyleSheet, View } from "react-native";
-import React from "react";
+import { StyleSheet, View, TouchableOpacity, Touchable } from "react-native";
 import ThemeText from "../theme-text.component";
 import { SIZES, useThemeColor } from "@/src/constants/theme";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { getUserName } from "@/src/hooks/username";
+import { router } from "expo-router";
 
 export const HeaderLeftContent = () => {
   const [username, setUsername] = useState<string>("");
@@ -32,9 +32,12 @@ export const HeaderLeftContent = () => {
 export const HeaderRightContent = () => {
   const COLORS = useThemeColor();
   return (
-    <View style={styles.headerRightContentWrapper}>
-      <Ionicons name="notifications" size={30} color={COLORS.primary} />
-    </View>
+    <TouchableOpacity
+      style={styles.headerRightContentWrapper}
+      onPress={() => router.replace("/(home)/")}
+    >
+      <Ionicons name="reload-circle" size={30} color={COLORS.primary} />
+    </TouchableOpacity>
   );
 };
 

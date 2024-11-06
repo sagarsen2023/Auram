@@ -1,9 +1,9 @@
-export default function priceFormatter(amount: number): string {
+export default function priceFormatter(amount?: number): string {
   const formatter = new Intl.NumberFormat("en-IN", {
     style: "currency",
     currency: "INR",
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });
-  return formatter.format(amount);
+  return formatter.format(amount ?? 0);
 }

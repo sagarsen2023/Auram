@@ -35,6 +35,21 @@ const _layout = () => {
           headerLeft: () => <SecondaryBackButton />,
         }}
       />
+      <Stack.Screen
+        name="product-details/[productId]"
+        options={{
+          title: "Product Details",
+         headerShown: false,
+        }}
+      />
+        <Stack.Screen
+        name="category-based-products/[categoryId]"
+        options={{
+          title: "Category Details",
+          headerTitleAlign: "center",
+          headerLeft: () => <SecondaryBackButton />,
+        }}
+      />
     </Stack>
   );
 };

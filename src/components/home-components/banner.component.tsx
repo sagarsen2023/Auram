@@ -4,11 +4,23 @@ import BannerCard from "./banner-card.component";
 import { BannerData } from "@/src/models/banner.model";
 import DotComponent from "./dot.component";
 import { SIZES } from "@/src/constants/theme";
+import BannerCardLoader from "../shimmer-loaders/banner-card-loader.component";
 
-const Banner = ({ bannerData }: { bannerData: BannerData[] }) => {
+const Banner = ({
+  bannerData,
+  loading,
+}: {
+  bannerData?: BannerData[];
+  loading: boolean;
+}) => {
   const width = Dimensions.get("window").width;
   const flatListRef = useRef<FlatList>(null);
   const [currentIndex, setCurrentIndex] = React.useState(0);
+
+  if (loading) {
+    return <BannerCardLoader />;
+  }
+  
   return (
     <View>
       {bannerData && (

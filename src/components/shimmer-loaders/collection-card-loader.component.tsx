@@ -1,24 +1,22 @@
-import {
-  Image,
-  StyleSheet,
-  View,
-  // TouchableWithoutFeedback,
-} from "react-native";
 import React from "react";
+import { StyleSheet, View } from "react-native";
 import { SIZES, useThemeColor } from "@/src/constants/theme";
-import imageValidator from "@/src/utils/imageValidator";
-import { CollectionItem } from "@/src/models/categories-and-items/collection.model";
-import ThemeText from "../theme-text.component";
+import { ShimmerContainer } from "./config/shimmer-effect-container.component";
 
-const CollectionCard = ({ collection }: { collection: CollectionItem }) => {
+const CollectionCardLoader = () => {
   const COLORS = useThemeColor();
+
   return (
     <View style={styles.cardWrapper}>
-      <Image
+      {/* Main image shimmer */}
+      <ShimmerContainer
+        width="100%"
+        height={200}
         style={styles.imageStyle}
-        source={imageValidator(collection.horizontalImage?.path)}
-        resizeMode="cover"
+        borderRadius={SIZES.borderRadius.default}
       />
+
+      {/* Text content overlay */}
       <View
         style={[
           styles.textContent,
@@ -27,13 +25,11 @@ const CollectionCard = ({ collection }: { collection: CollectionItem }) => {
           },
         ]}
       >
-        <ThemeText style={styles.title}>{collection.title}</ThemeText>
+        <ShimmerContainer width="80%" height={20} borderRadius={4} />
       </View>
     </View>
   );
 };
-
-export default CollectionCard;
 
 const styles = StyleSheet.create({
   cardWrapper: {
@@ -44,9 +40,7 @@ const styles = StyleSheet.create({
     position: "relative",
   },
   imageStyle: {
-    width: "100%",
     aspectRatio: 1,
-    borderRadius: SIZES.borderRadius.default,
   },
   textContent: {
     position: "absolute",
@@ -57,8 +51,6 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: SIZES.borderRadius.default,
     borderTopRightRadius: SIZES.borderRadius.default,
   },
-  title: {
-    fontSize: SIZES.fontSize.medium,
-    fontWeight: "bold",
-  },
 });
+
+export default CollectionCardLoader;

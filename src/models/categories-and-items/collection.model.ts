@@ -6,15 +6,15 @@ export interface CollectionItem {
   _id: string;
   title: string;
   description: string;
-  media: MediaResponse[];
+  media?: MediaResponse[];
   status: boolean;
-  verticalImage: MediaResponse;
-  horizontalImage: MediaResponse;
+  verticalImage?: MediaResponse;
+  horizontalImage?: MediaResponse;
   slug: string;
   colorCode: string;
   textColor: string;
-  createdBy: UserResponse;
-  updatedBy: UserResponse;
+  createdBy: UserResponse | string;
+  updatedBy: UserResponse | string;
   createdAt: string;
   updatedAt: string;
 }

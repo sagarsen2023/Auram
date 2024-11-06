@@ -1,11 +1,11 @@
 import { StyleSheet, ViewStyle } from "react-native";
 import React from "react";
 import SecondaryRoundedButton from "./secondary-rounded-button.component";
-import Ionicons from "@expo/vector-icons/Ionicons";
 import { useThemeColor } from "@/src/constants/theme";
 import { router } from "expo-router";
+import AntDesign from "@expo/vector-icons/AntDesign";
 
-const SecondaryBackButton = ({ style }: { style?: ViewStyle }) => {
+const WishListButton = ({ style }: { style?: ViewStyle }) => {
   const COLORS = useThemeColor();
   return (
     <SecondaryRoundedButton
@@ -17,12 +17,12 @@ const SecondaryBackButton = ({ style }: { style?: ViewStyle }) => {
       ]}
       onPress={() => router.back()}
     >
-      <Ionicons name="chevron-back" size={20} color={COLORS.text} />
+      <AntDesign name="hearto" size={20} color={COLORS.text} />
     </SecondaryRoundedButton>
   );
 };
 
-export default SecondaryBackButton;
+export default WishListButton;
 
 const styles = StyleSheet.create({
   buttonStyle: {
