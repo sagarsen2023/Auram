@@ -7,10 +7,6 @@ import SecondaryBackButton from "@/src/components/buttons/secondary-back-button.
 import { SIZES, useThemeColor } from "@/src/constants/theme";
 import ThemeText from "@/src/components/theme-text.component";
 import WishListButton from "@/src/components/buttons/wishlist-button.component";
-import { WebView, WebViewMessageEvent } from "react-native-webview";
-import htmlContentGenerator, {
-  useWebViewHeight,
-} from "@/src/utils/htmlContentGenerator";
 import priceFormatter from "@/src/utils/priceFormatter";
 import Badge from "@/src/components/badge.component";
 import StoneDetailsCardLister from "@/src/components/card-listers/stone-details-card-lister.component";
@@ -18,14 +14,11 @@ import PrimaryRoundedButton from "@/src/components/buttons/primary-rounded-butto
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import ImageContainer from "@/src/components/product-detail-components/image-comtainer.component";
 import MakingChargesAndGoldPurity from "@/src/components/product-detail-components/making-charges-and-gold-purity.component";
+import ProductDetailsAndSpecifications from "@/src/components/product-detail-components/product-details-and-specifications.component";
 
 const ProductDetails = () => {
   const COLORS = useThemeColor();
   const { productId } = useLocalSearchParams();
-  const [webViewHeight, handleWebViewMessage] = useWebViewHeight() as [
-    number,
-    (event: WebViewMessageEvent) => void
-  ];
   const scrollY = useRef(new Animated.Value(0)).current;
   const backgroundColorAnim = useRef(new Animated.Value(0)).current;
 
@@ -218,48 +211,11 @@ const ProductDetails = () => {
             )}
           </View>
 
-          {sampleData.itemDescription && (
-            <View>
-              <ThemeText style={styles.subHeaderText}>
-                Product Details
-              </ThemeText>
-              <WebView
-                style={{ height: webViewHeight + 20 }}
-                originWhitelist={["*"]}
-                source={{
-                  html: htmlContentGenerator({
-                    htmlContent: sampleData.itemDescription,
-                    fontSizeInPx: SIZES.fontSize.small,
-                    backgroundColor: COLORS.secondary,
-                    textColor: COLORS.text,
-                  }),
-                }}
-                onMessage={handleWebViewMessage}
-                javaScriptEnabled
-              />
-            </View>
-          )}
-          {sampleData.itemSpecification && (
-            <View>
-              <ThemeText style={styles.subHeaderText}>
-                Product Specifications
-              </ThemeText>
-              <WebView
-                style={{ height: webViewHeight }}
-                originWhitelist={["*"]}
-                source={{
-                  html: htmlContentGenerator({
-                    htmlContent: sampleData.itemSpecification,
-                    fontSizeInPx: SIZES.fontSize.small,
-                    backgroundColor: COLORS.secondary,
-                    textColor: COLORS.text,
-                  }),
-                }}
-                onMessage={handleWebViewMessage}
-                javaScriptEnabled
-              />
-            </View>
-          )}
+          <ProductDetailsAndSpecifications
+            description={sampleData.itemDescription}
+            specification={sampleData.itemSpecification}
+          />
+
           {/* Making charges and gold purity */}
           <MakingChargesAndGoldPurity
             goldPurity={sampleData.goldPurity}
