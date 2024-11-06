@@ -17,6 +17,7 @@ import StoneDetailsCardLister from "@/src/components/card-listers/stone-details-
 import PrimaryRoundedButton from "@/src/components/buttons/primary-rounded-button.component";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import ImageContainer from "@/src/components/product-detail-components/image-comtainer.component";
+import MakingChargesAndGoldPurity from "@/src/components/product-detail-components/making-charges-and-gold-purity.component";
 
 const ProductDetails = () => {
   const COLORS = useThemeColor();
@@ -260,24 +261,10 @@ const ProductDetails = () => {
             </View>
           )}
           {/* Making charges and gold purity */}
-          <View style={styles.purityAndMakingChargeContainer}>
-            {!!sampleData.makingCharge && (
-              <ThemeText
-                type="Primary"
-                fontWeight={"500"}
-                size={SIZES.fontSize.medium}
-              >
-                Making Charge: {priceFormatter(sampleData.makingCharge)}
-              </ThemeText>
-            )}
-            {!!sampleData.goldPurity && (
-              <Badge>
-                <ThemeText style={styles.badgeText}>
-                  Gold Purity: {sampleData.goldPurity}K
-                </ThemeText>
-              </Badge>
-            )}
-          </View>
+          <MakingChargesAndGoldPurity
+            goldPurity={sampleData.goldPurity}
+            makingCharge={sampleData.makingCharge}
+          />
 
           {/* Stone details */}
           <StoneDetailsCardLister stoneDetailsList={sampleData.stoneDetails} />
@@ -393,12 +380,6 @@ const styles = StyleSheet.create({
   },
   badgeText: {
     color: "white",
-  },
-  purityAndMakingChargeContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginVertical: SIZES.marginOrPadding.medium,
   },
   addToCartContainer: {
     position: "absolute",
