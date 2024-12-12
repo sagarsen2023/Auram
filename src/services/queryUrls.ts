@@ -1,5 +1,5 @@
 // BASE URL
-export const BASE_URL = "https://auram-api.onrender.com/api";
+export const BASE_URL = "https://auramapi.meancloud.in/api";
 export const IMAGE_URL = "https://pub-d7fc7e0204644a99b00264cba5e82690.r2.dev";
 
 // AUTHENTICATION URLS
