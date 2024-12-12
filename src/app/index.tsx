@@ -14,7 +14,7 @@ const index = () => {
         router.replace("/(root)/(home)");
       } else {
         setIsLogged(false);
-        router.replace("/(welcome)/");
+        router.replace("/(welcome)");
       }
     });
   }, []);
