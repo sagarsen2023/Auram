@@ -1,7 +1,7 @@
 import CategoryResponse from "../models/categories-and-items/category.model";
 import CollectionApiResponse from "../models/categories-and-items/collection.model";
 import {
-  ItemDetailsResponse,
+  ProductDetailsResponse,
   ProductApiResponse,
 } from "../models/categories-and-items/product.model.ts";
 import { fetchAPI } from "./config";
@@ -28,5 +28,5 @@ export const productAPI = {
   getLatestProducts: async () =>
     fetchAPI.get<ProductApiResponse>(LATEST_PRODUCTS_URL),
   getProductDetails: async (id: string) =>
-    fetchAPI.get<ItemDetailsResponse>(`${PRODUCTS_URL}/${id}`),
+    fetchAPI.get<ProductDetailsResponse>(`${PRODUCTS_URL}/${id}`),
 };

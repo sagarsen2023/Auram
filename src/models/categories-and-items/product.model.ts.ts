@@ -50,7 +50,7 @@ export interface ProductApiResponse extends BaseApiResponse {
   data: Product[];
 }
 
-export interface ItemDetailsResponse extends BaseApiResponse {
+export interface ProductDetailsResponse extends BaseApiResponse {
   status: boolean;
   data: Product;
 }
