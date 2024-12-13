@@ -1,7 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import React from "react";
 import StoneDetailsCard from "../cards/stone-details-card.component";
-import { StoneDetails } from "@/src/models/categories-and-items/item.model.ts";
+import { StoneDetails } from "@/src/models/categories-and-items/product.model.ts";
 import ThemeText from "../theme-text.component";
 import { SIZES } from "@/src/constants/theme";
 

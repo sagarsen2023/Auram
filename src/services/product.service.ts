@@ -1,12 +1,16 @@
 import CategoryResponse from "../models/categories-and-items/category.model";
 import CollectionApiResponse from "../models/categories-and-items/collection.model";
-import ItemApiResponse from "../models/categories-and-items/item.model.ts";
+import {
+  ItemDetailsResponse,
+  ProductApiResponse,
+} from "../models/categories-and-items/product.model.ts";
 import { fetchAPI } from "./config";
 import {
   CATEGORY_URL,
   COLLECTION_URL,
   FEATURED_PRODUCTS_URL,
   LATEST_PRODUCTS_URL,
+  PRODUCTS_URL,
 } from "./queryUrls";
 
 export const categoryAPI = {
@@ -20,7 +24,9 @@ export const collectionAPI = {
 
 export const productAPI = {
   getFeaturedProducts: async () =>
-    fetchAPI.get<ItemApiResponse>(FEATURED_PRODUCTS_URL),
+    fetchAPI.get<ProductApiResponse>(FEATURED_PRODUCTS_URL),
   getLatestProducts: async () =>
-    fetchAPI.get<ItemApiResponse>(LATEST_PRODUCTS_URL),
+    fetchAPI.get<ProductApiResponse>(LATEST_PRODUCTS_URL),
+  getProductDetails: async (id: string) =>
+    fetchAPI.get<ItemDetailsResponse>(`${PRODUCTS_URL}/${id}`),
 };

@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "react-native";
 import React from "react";
-import { Product } from "@/src/models/categories-and-items/item.model.ts";
+import { Product } from "@/src/models/categories-and-items/product.model.ts";
 import MainProductCard from "../cards/main-product-card";
 import ThemeText from "../theme-text.component";
 import { SIZES } from "@/src/constants/theme";

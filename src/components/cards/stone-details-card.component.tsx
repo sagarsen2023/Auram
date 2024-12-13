@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "react-native";
 import React from "react";
-import { StoneDetails } from "@/src/models/categories-and-items/item.model.ts";
+import { StoneDetails } from "@/src/models/categories-and-items/product.model.ts";
 import WebView, { WebViewMessageEvent } from "react-native-webview";
 import htmlContentGenerator, {
   useWebViewHeight,

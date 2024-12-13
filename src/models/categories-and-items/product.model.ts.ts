@@ -45,7 +45,12 @@ export interface Product {
   isFeatured: boolean;
 }
 
-export default interface ItemApiResponse extends BaseApiResponse {
+export interface ProductApiResponse extends BaseApiResponse {
   status: boolean;
   data: Product[];
+}
+
+export interface ItemDetailsResponse extends BaseApiResponse {
+  status: boolean;
+  data: Product;
 }

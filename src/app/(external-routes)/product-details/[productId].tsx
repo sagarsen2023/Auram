@@ -1,7 +1,7 @@
 import { StyleSheet, View, Platform, Animated } from "react-native";
 import React, { useEffect, useRef } from "react";
 import { useLocalSearchParams } from "expo-router";
-import { Product } from "@/src/models/categories-and-items/item.model.ts";
+import { Product } from "@/src/models/categories-and-items/product.model.ts";
 import { StatusBar } from "expo-status-bar";
 import SecondaryBackButton from "@/src/components/buttons/secondary-back-button.component";
 import { SIZES, useThemeColor } from "@/src/constants/theme";
